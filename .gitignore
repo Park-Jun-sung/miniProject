@@ -1,5 +1,8 @@
 # All file Ignore
-**
+*
 
 # White List
+!*/
+!lib/**
 !src/**
+!.gitignore
