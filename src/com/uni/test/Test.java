@@ -13,7 +13,6 @@ public class Test {
 		ResultSet rset = null;
 		
 		try {
-			
 			conn = DriverManager.getConnection("jdbc:mysql://3.34.17.94:55939/mini", "mini1234", "mini1234");
 			
 			System.out.println("conn : " + conn);//성공하면 connection 값, 실패하면 null
