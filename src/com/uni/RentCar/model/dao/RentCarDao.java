@@ -8,11 +8,11 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
+import static com.uni.common.JDBCTemplate.close;
 import com.uni.rentCar.model.dto.RentCarDto;
 
 public class RentCarDao {
 	
-
 	public ArrayList<RentCarDto> selectAll(Connection conn) {
 		ArrayList<RentCarDto> list = null;
 		
@@ -67,9 +67,6 @@ public class RentCarDao {
 				ca.setRentcar_fuel(rset.getString("rentcar_fuel"));
 				ca.setRentcar_limit(rset.getInt("rentcar_limit"));
 				ca.setRentcar_time(rset.getString("rentcar_time"));
-				
-				
-				
 				list.add(ca);
 			}
 			
@@ -80,8 +77,8 @@ public class RentCarDao {
 			e.printStackTrace();
 		}finally {
 			
-			//close(rset);
-			//close(stmt);
+			close(rset);
+			close(stmt);
 		}
 		
 		
@@ -143,12 +140,13 @@ public class RentCarDao {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		} finally {
-				//close(rset);
-				//close(pstmt);
+				close(rset);
+				close(pstmt);
 		}
 		
 		return ca;
-	}
+	}	
+
 
 	public List<RentCarDto> selectByName(Connection conn, String memberName) {
 		ArrayList<RentCarDto> list = null;
@@ -191,14 +189,15 @@ public class RentCarDao {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		} finally {
-			//close(rset);
-			//close(pstmt);
+			close(rset);
+			close(pstmt);
 		}
 
 		return list;
 	}
 
 	public int insertMember(Connection conn, RentCarDto m) {
+		
 		int result = 0;
 		
 		PreparedStatement pstmt = null;
@@ -226,7 +225,7 @@ public class RentCarDao {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}finally {
-			//close(pstmt);
+			close(pstmt);
 		}
 		
 		return result;
@@ -259,7 +258,7 @@ public class RentCarDao {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}finally {
-			//close(pstmt);
+			close(pstmt);
 		}
 		
 		return result;
@@ -287,7 +286,7 @@ public class RentCarDao {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}finally {
-			//close(pstmt);
+			close(pstmt);
 		}
 		
 		return result;
