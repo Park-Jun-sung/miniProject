@@ -1,4 +1,4 @@
-package com.uni.rentCar.member.model.dto;
+package com.uni.rentCar.model.dto;
 
 import java.util.Date;
 

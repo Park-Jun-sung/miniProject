@@ -1,6 +1,6 @@
-package com.uni.RentCar.member.run;
+package com.uni.rentCar.run;
 
-import com.uni.RentCar.member.view.RentCar_Menu;
+import com.uni.rentCar.view.RentCar_Menu;
 
 public class Application_test_run {
 

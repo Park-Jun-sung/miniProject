@@ -1,4 +1,4 @@
-package com.uni.rentCar.member.model.dao;
+package com.uni.rentCar.model.dao;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -8,13 +8,11 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.uni.rentCar.member.model.dto.RentCarDto;
-import com.uni.common.JDBCTemplate;
+import com.uni.rentCar.model.dto.RentCarDto;
 
 public class RentCarDao {
 	
-	
-	
+
 	public ArrayList<RentCarDto> selectAll(Connection conn) {
 		ArrayList<RentCarDto> list = null;
 		
