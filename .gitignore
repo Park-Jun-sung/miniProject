@@ -1,9 +1,9 @@
-# All file Ignore
+## All file Ignore
 *
 
-# White List
+## White List
 !*/
 !lib/**
 !src/**
+!config/**
 !.gitignore
-/bin/
