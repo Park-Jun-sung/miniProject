@@ -13,6 +13,34 @@ public class RentCarService {
 	private RentCarDao rentcarDao = new RentCarDao();
 	
 	
+	public ArrayList<RentCarDto> selectDate(String str) {
+		
+		Connection conn = getConnection();
+		ArrayList<RentCarDto> ca_list = rentcarDao.selectCar_Data(conn, str);
+		
+		return ca_list;
+		
+	}
+	
+	public ArrayList<RentCarDto> selectTime(String str) {
+		
+		Connection conn = getConnection();
+		ArrayList<RentCarDto> ca_list = rentcarDao.selectCar_Time(conn, str);
+		
+		return ca_list;
+		
+	}
+	
+//	public ArrayList<RentCarDto> selectDate() {
+//		
+//		Connection conn = getConnection();
+//		ArrayList<RentCarDto> list = rentcarDao.selectCar_Data(conn);
+//		
+//		return list;
+//	}
+	
+	
+	
 	public  ArrayList<RentCarDto> selectAll() {
 		
 		Connection conn = getConnection();

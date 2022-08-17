@@ -1,9 +1,12 @@
 package com.uni.rentCar.model.dto;
 
+import java.io.Serializable;
 import java.util.Date;
 
-public class RentCarDto {
+public class RentCarDto implements Serializable {
 
+	private static final long serialVersionUID = 6346615596757676147L;
+	
 	private int rentcar_no;
 	private String car_no;
 	private String rentcar_model;
@@ -11,7 +14,7 @@ public class RentCarDto {
 	private Date rentcar_datetime;
 	private Date rentcar_enddate;
 	private Date rentcar_endtime;
-	private Date rentcar_renttime;
+	private int rentcar_renttime;
 	private int rentcar_price;
 	private String rentcar_section;
 	private String rentcar_fuel;
@@ -24,7 +27,7 @@ public class RentCarDto {
 	}
 	
 	public RentCarDto(int rentcar_no, String car_no, String rentcar_model, Date rentcar_date, Date rentcar_datetime,
-			Date rentcar_enddate, Date rentcar_endtime, Date rentcar_renttime, int rentcar_price,
+			Date rentcar_enddate, Date rentcar_endtime, int rentcar_renttime, int rentcar_price,
 			String rentcar_section, String rentcar_fuel, int rentcar_limit, String rentcar_time) {
 		super();
 		this.rentcar_no = rentcar_no;
@@ -98,11 +101,11 @@ public class RentCarDto {
 		this.rentcar_endtime = rentcar_endtime;
 	}
 
-	public Date getRentcar_renttime() {
+	public int getRentcar_renttime() {
 		return rentcar_renttime;
 	}
 
-	public void setRentcar_renttime(Date rentcar_renttime) {
+	public void setRentcar_renttime(int rentcar_renttime) {
 		this.rentcar_renttime = rentcar_renttime;
 	}
 
@@ -145,6 +148,22 @@ public class RentCarDto {
 	public void setRentcar_time(String rentcar_time) {
 		this.rentcar_time = rentcar_time;
 	}
+
+	@Override
+	public String toString() {
+		
+//		String str1 =  rentcar_no + "    " + car_no + "   " + rentcar_model;
+//		
+//		return  str1 + "       " + rentcar_date + "    " + rentcar_datetime + "     "
+//		+ rentcar_enddate + "       " + rentcar_endtime + "      " + rentcar_renttime
+//		+ "        " + rentcar_price + "    " + rentcar_section + "     " + rentcar_fuel + "      " + rentcar_limit + "       " + rentcar_time;
+		
+		return  rentcar_no + "    " + car_no + "   " + rentcar_model + "     " + rentcar_date + "    " + rentcar_datetime + "     "
+				+ rentcar_enddate + "       " + rentcar_endtime + "      " + rentcar_renttime
+				+ "        " + rentcar_price + "    " + rentcar_section + "     " + rentcar_fuel + "      " + rentcar_limit + "       " + rentcar_time;
+	}
+	
+	
 	
 	
 }

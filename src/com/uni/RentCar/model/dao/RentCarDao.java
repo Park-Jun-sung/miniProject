@@ -13,7 +13,126 @@ import com.uni.rentCar.model.dto.RentCarDto;
 
 public class RentCarDao {
 	
-	public ArrayList<RentCarDto> selectAll(Connection conn) {
+		public ArrayList<RentCarDto> selectCar_Data(Connection conn, String Date) {
+		
+		
+		// Date 타입으로 디비에 보내야 한다. (String으로 되는지 확인)
+		
+		//RentCarDto ca = null;
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;// SELECT 후 결과값 받아올객체
+		ArrayList<RentCarDto> list = null;
+		
+		String sql = "SELECT * FROM rentcar WHERE rentcar_date = ?";
+		
+		try {
+			
+			// 형식 : YYYY-mm-dd 형식
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, Date);
+			
+			//4.쿼리문을 전송, 실행한 결과를 resultset으로 받기
+			
+			rset = pstmt.executeQuery();
+			
+			list = new ArrayList<RentCarDto>();
+			
+			while(rset.next()) {
+				
+				RentCarDto ca = new RentCarDto();
+				
+				ca.setRentcar_no(rset.getInt("rentcar_no"));
+				ca.setCar_no(rset.getString("car_no"));
+				ca.setRentcar_model(rset.getString("rentcar_model"));
+				ca.setRentcar_date(rset.getDate("rentcar_date"));
+				ca.setRentcar_datetime(rset.getTime("rentcar_datetime"));
+				ca.setRentcar_enddate(rset.getDate("rentcar_enddate"));
+				ca.setRentcar_endtime(rset.getTime("rentcar_endtime"));
+				ca.setRentcar_renttime(rset.getInt("rentcar_renttime"));
+				ca.setRentcar_price(rset.getInt("rentcar_price"));
+				ca.setRentcar_section(rset.getString("rentcar_section"));
+				ca.setRentcar_fuel(rset.getString("rentcar_fuel"));
+				ca.setRentcar_limit(rset.getInt("rentcar_limit"));
+				ca.setRentcar_time(rset.getString("rentcar_time"));
+				list.add(ca);
+			}
+			
+			
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} finally {
+				close(rset);
+				close(pstmt);
+		}
+		
+		return list;
+	}
+		
+	
+		public ArrayList<RentCarDto> selectCar_Time(Connection conn, String Time) {
+			
+			
+			// Date 타입으로 디비에 보내야 한다. (String으로 되는지 확인)
+			
+			//RentCarDto ca = null;
+			PreparedStatement pstmt = null;
+			ResultSet rset = null;// SELECT 후 결과값 받아올객체
+			ArrayList<RentCarDto> list = null;
+			
+			String sql = "SELECT * FROM rentcar WHERE rentcar_datetime > ?";
+			
+			try {
+				
+				// 형식 : YYYY-mm-dd 형식
+				pstmt = conn.prepareStatement(sql);
+				pstmt.setString(1, Time);
+				
+				//4.쿼리문을 전송, 실행한 결과를 resultset으로 받기
+				
+				rset = pstmt.executeQuery();
+				
+				list = new ArrayList<RentCarDto>();
+				
+				while(rset.next()) {
+					
+					RentCarDto ca = new RentCarDto();
+					
+					ca.setRentcar_no(rset.getInt("rentcar_no"));
+					ca.setCar_no(rset.getString("car_no"));
+					ca.setRentcar_model(rset.getString("rentcar_model"));
+					ca.setRentcar_date(rset.getDate("rentcar_date"));
+					ca.setRentcar_datetime(rset.getTime("rentcar_datetime"));
+					ca.setRentcar_enddate(rset.getDate("rentcar_enddate"));
+					ca.setRentcar_endtime(rset.getTime("rentcar_endtime"));
+					ca.setRentcar_renttime(rset.getInt("rentcar_renttime"));
+					ca.setRentcar_price(rset.getInt("rentcar_price"));
+					ca.setRentcar_section(rset.getString("rentcar_section"));
+					ca.setRentcar_fuel(rset.getString("rentcar_fuel"));
+					ca.setRentcar_limit(rset.getInt("rentcar_limit"));
+					ca.setRentcar_time(rset.getString("rentcar_time"));
+					list.add(ca);
+				}
+				
+				
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			} finally {
+					close(rset);
+					close(pstmt);
+			}
+			
+			return list;
+		}
+		
+	
+	
+	public ArrayList<RentCarDto> selectCar_Data(Connection conn) {
+		
+		
+		// Date 타입으로 디비에 보내야 한다. (String으로 되는지 확인)
+		
 		ArrayList<RentCarDto> list = null;
 		
 		Statement stmt = null;// 쿼리문을 실행할 객체
@@ -58,10 +177,85 @@ public class RentCarDao {
 				ca.setCar_no(rset.getString("car_no"));
 				ca.setRentcar_model(rset.getString("rentcar_model"));
 				ca.setRentcar_date(rset.getDate("rentcar_date"));
-				ca.setRentcar_datetime(rset.getDate("rentcar_datetime"));
+				ca.setRentcar_datetime(rset.getTime("rentcar_datetime"));
 				ca.setRentcar_enddate(rset.getDate("rentcar_enddate"));
-				ca.setRentcar_endtime(rset.getDate("rentcar_endtime"));
-				ca.setRentcar_renttime(rset.getDate("rentcar_renttime"));
+				ca.setRentcar_endtime(rset.getTime("rentcar_endtime"));
+				ca.setRentcar_renttime(rset.getInt("rentcar_renttime"));
+				ca.setRentcar_price(rset.getInt("rentcar_price"));
+				ca.setRentcar_section(rset.getString("rentcar_section"));
+				ca.setRentcar_fuel(rset.getString("rentcar_fuel"));
+				ca.setRentcar_limit(rset.getInt("rentcar_limit"));
+				ca.setRentcar_time(rset.getString("rentcar_time"));
+				list.add(ca);
+			}
+			
+			
+			
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}finally {
+			
+			close(rset);
+			close(stmt);
+		}
+		
+		
+		return list;
+	}
+	
+	
+	
+	public ArrayList<RentCarDto> selectAll(Connection conn) {
+		
+		ArrayList<RentCarDto> list = null;
+		
+		Statement stmt = null;// 쿼리문을 실행할 객체
+		ResultSet rset = null;// SELECT 후 결과값 받아올객체
+		
+		String sql = "SELECT * FROM rentcar";// 자동으로 세미콜론 붙여서 실행됨
+		
+		try {
+			
+			//3.쿼리문을 실행할 statement 객체 생성 
+			
+			stmt = conn.createStatement();
+			
+			//4.쿼리문을 전송, 실행한 결과를 resultset으로 받기
+			
+			rset = stmt.executeQuery(sql);
+			
+			
+			//5. 받은 결과값을 객체에 옮겨서 저장하기 
+			list = new ArrayList<RentCarDto>();
+			/*
+			 * USERID
+				PASSWORD
+				USERNAME
+				GENDER
+				AGE
+				EMAIL
+				PHONE
+				ADDRESS
+				HOBBY
+				ENROLLDATE
+			 * 
+			 * 
+			 * */
+			while(rset.next()) {
+				//https://www.tutorialspoint.com/jdbc/jdbc-data-types.htm
+				//Member m = new Member();
+				
+				RentCarDto ca = new RentCarDto();
+				
+				ca.setRentcar_no(rset.getInt("rentcar_no"));
+				ca.setCar_no(rset.getString("car_no"));
+				ca.setRentcar_model(rset.getString("rentcar_model"));
+				ca.setRentcar_date(rset.getDate("rentcar_date"));
+				ca.setRentcar_datetime(rset.getTime("rentcar_datetime"));
+				ca.setRentcar_enddate(rset.getDate("rentcar_enddate"));
+				ca.setRentcar_endtime(rset.getTime("rentcar_endtime"));
+				ca.setRentcar_renttime(rset.getInt("rentcar_renttime"));
 				ca.setRentcar_price(rset.getInt("rentcar_price"));
 				ca.setRentcar_section(rset.getString("rentcar_section"));
 				ca.setRentcar_fuel(rset.getString("rentcar_fuel"));
@@ -113,26 +307,12 @@ public class RentCarDao {
 				ca.setRentcar_datetime(rset.getDate("rentcar_datetime"));
 				ca.setRentcar_enddate(rset.getDate("rentcar_enddate"));
 				ca.setRentcar_endtime(rset.getDate("rentcar_endtime"));
-				ca.setRentcar_renttime(rset.getDate("rentcar_renttime"));
+				ca.setRentcar_renttime(rset.getInt("rentcar_renttime"));
 				ca.setRentcar_price(rset.getInt("rentcar_price"));
 				ca.setRentcar_section(rset.getString("rentcar_section"));
 				ca.setRentcar_fuel(rset.getString("rentcar_fuel"));
 				ca.setRentcar_limit(rset.getInt("rentcar_limit"));
 				ca.setRentcar_time(rset.getString("rentcar_time"));
-				
-//				m = new Member();
-//				m.setUserId(rset.getString("USERID"));
-//				m.setPassword(rset.getString("PASSWORD"));
-//				m.setUserName(rset.getString("USERNAME"));
-//				m.setGender(rset.getString("GENDER"));
-//				m.setAge(rset.getInt("AGE"));
-//				m.setEmail(rset.getString("EMAIL"));
-//				m.setPhone(rset.getString("PHONE"));
-//				m.setAddress(rset.getString("ADDRESS"));
-//				m.setHobby(rset.getString("HOBBY"));
-//				m.setEnrollDate(rset.getDate("ENROLLDATE"));
-				
-				
 			}
 			
 			
@@ -175,7 +355,7 @@ public class RentCarDao {
 				ca.setRentcar_datetime(rset.getDate("rentcar_datetime"));
 				ca.setRentcar_enddate(rset.getDate("rentcar_enddate"));
 				ca.setRentcar_endtime(rset.getDate("rentcar_endtime"));
-				ca.setRentcar_renttime(rset.getDate("rentcar_renttime"));
+				ca.setRentcar_renttime(rset.getInt("rentcar_renttime"));
 				ca.setRentcar_price(rset.getInt("rentcar_price"));
 				ca.setRentcar_section(rset.getString("rentcar_section"));
 				ca.setRentcar_fuel(rset.getString("rentcar_fuel"));
