@@ -9,11 +9,11 @@ public class Application {
 
 	public static void main(String[] args) {
 		
-//		new StayMenu().areaMenu();
+		new StayMenu().areaMenu();
 		
 //		Connection conn = JDBCTemplate.getConnection();
 	
-		new StayMenu().dayChoice();
+//		new StayMenu().dayChoice();
 		
 	}
 

@@ -2,6 +2,7 @@ package com.uni.stay.view;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.Scanner;
@@ -16,6 +17,11 @@ public class StayMenu {
 	
 	private StayController stayController = new StayController();
 	private BookingStay bookingStay = new BookingStay();
+	private String[] date;
+	private String year;
+	private String month;
+	private String day;
+	private String tomorrow;
 	
 	public void areaMenu() {
 		int areaChoice;
@@ -73,6 +79,7 @@ public class StayMenu {
 			System.out.println("번호선택 : ");
 			
 			stayChoice = sc.nextInt();
+			sc.nextLine();
 			
 			switch(stayChoice) {
 			case 1: 
@@ -119,6 +126,7 @@ public class StayMenu {
 			System.out.println("번호선택 : ");
 			
 			choice = sc.nextInt();
+			sc.nextLine();
 			
 			switch(choice) {
 			case 1: 
@@ -141,10 +149,20 @@ public class StayMenu {
 
 	public void dayChoice() {
 		
-		System.out.println("입실 일자를 입력해 주세요 ( '-'빼고 년도월일 입력, ex)20220101 ): ");
+		System.out.println("입실 일자를 입력해 주세요 ( '-'구분자로 년도월일 입력, ex)2022-01-01 ): ");
 		String bookingDate = sc.nextLine();
 		
-		SimpleDateFormat formatter = new SimpleDateFormat("yyyyMMdd");
+		date = bookingDate.split("-");
+		year = date[0];
+		month = date[1];
+		day = date[2];
+		
+		int temp = Integer.parseInt(day);
+		temp++; //날짜를 1일 추가
+		
+		tomorrow = Integer.toString(temp);
+		
+		SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
 		
 		Date transDate = null;
 		try {
@@ -210,6 +228,9 @@ public class StayMenu {
 			
 			switch(choice) {
 			case 1: 
+				stayController.selectByStayInfo(bookingStay.getStayArea(), bookingStay.getStayCode()
+						,bookingStay.getStayDay() , bookingStay.getStayName());
+				
 				System.out.println("예약하시겠습니까?(y/n)");
 				String booking = sc.nextLine();
 				if(booking.equals("y")||booking.equals("Y")) {
@@ -231,13 +252,18 @@ public class StayMenu {
 	}
 
 	private void bookingMenu() {
+
+		stayController.selectByBookingConfirmInfo(bookingStay.getStayArea(), bookingStay.getStayCode()
+				,bookingStay.getStayDay() , bookingStay.getStayName());
 		
-		
+		System.out.println("엔터를 눌러주시면 메뉴로 돌아갑니다.");
+		String menu = sc.nextLine();
 		
 		
 	}
 
-	public void displayStayList(List<Stay> s2) {
+	public void displayStayNameList(List<Stay> s2) {
+		System.out.println();
 		System.out.println("다음은 숙소 목록 입니다");
 		System.out.println("----------------------------------");
 		System.out.println();
@@ -251,6 +277,36 @@ public class StayMenu {
 	public void displayError(String message) {
 		System.out.println("서비스 요청 처리 실패 : " + message);
 		
+	}
+
+	public void displayStayInfoList(List<String> s2) {
+		System.out.println();
+		System.out.println("---------예약 정보---------");
+		System.out.println();
+		
+		System.out.println("숙소명 : " + bookingStay.getStayName());
+		System.out.println("주소 : " + s2.get(1));
+		System.out.println("Check In : " + year + "년 " + month + "월 " + day + "일 15시00분 이후");
+		System.out.println("Check Out : " + year + "년 " + month + "월 " + tomorrow + "일 11시00분 이전");
+		System.out.println("금액 : " + s2.get(2) + "원");
+	
+		System.out.println();
+		
+		
+	}
+
+	public void displayBookingConfirm(List<String> s2) {
+		System.out.println();
+		System.out.println("---------예약 완료---------");
+		System.out.println();
+		
+		System.out.println("숙소명 : " + bookingStay.getStayName());
+		System.out.println("주소 : " + s2.get(1));
+		System.out.println("Check In : " + year + "년 " + month + "월 " + day + "일 15시00분 이후");
+		System.out.println("Check Out : " + year + "년 " + month + "월 " + tomorrow + "일 11시00분 이전");
+		System.out.println("금액 : " + s2.get(2) + "원");
+		System.out.println();
+		System.out.println("숙소가 예약되었습니다.");
 	}
 
 }

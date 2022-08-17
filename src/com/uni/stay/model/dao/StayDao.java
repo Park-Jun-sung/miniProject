@@ -9,6 +9,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import java.util.Properties;
 
@@ -35,7 +36,7 @@ public class StayDao {
 		PreparedStatement pstmt = null;// 실행할 쿼리
 	    ResultSet rset = null;// Select 한후 결과값 받아올 객체
 		
-		String sql = "SELECT * FROM MEMBER WHERE stay_area LIKE ? AND stay_code = ?";
+		String sql = "SELECT * FROM stay WHERE stay_area LIKE ? AND stay_code = ?";
 		
 		
 		try {
@@ -59,6 +60,57 @@ public class StayDao {
 	            
 	            list.add(s);
 	         }
+			
+			
+			
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} finally {
+			
+			close(rset);
+			close(pstmt);
+			
+		}
+		
+		return list;
+	}
+
+	public List<String> selectByStayInfo(Connection con, String stayName) {
+		ArrayList<String> list = null;
+		PreparedStatement pstmt = null;// 실행할 쿼리
+	    ResultSet rset = null;// Select 한후 결과값 받아올 객체
+		
+		String sql = "SELECT * FROM stay WHERE stay_name LIKE ?";
+		
+		
+		Stay s = new Stay();
+		try {
+			pstmt = con.prepareStatement(sql);
+			pstmt.setString(1, stayName);
+			rset = pstmt.executeQuery();
+			
+			list = new ArrayList<String>();
+			
+			while (rset.next()) {
+
+	            
+//	            s.setStayNo(rset.getInt("stay_no"));
+//	            s.setStayCode(rset.getInt("stay_code"));
+//	            s.setStayArea(rset.getString("stay_area"));
+//	            s.setStayName(rset.getString("stay_name"));
+//	            s.setStayDay(rset.getDate("stay_day"));
+//	            s.setPrice(rset.getInt("price"));
+	            
+	            String name = rset.getString("stay_name");
+	            list.add(name);
+	            String area = rset.getString("stay_area");
+	            list.add(area);		
+	            int price = rset.getInt("price");
+	            String temp = Integer.toString(price);
+	            list.add(temp);
+	         
+			}
 			
 			
 			

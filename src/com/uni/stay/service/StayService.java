@@ -3,6 +3,7 @@ package com.uni.stay.service;
 
 import java.sql.Connection;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import com.uni.common.JDBCTemplate;
@@ -16,6 +17,13 @@ public class StayService {
 	public List<Stay> selectByNameList(String stayArea, int stayCode) {
 		Connection con = JDBCTemplate.getConnection();
 		List<Stay> list = stayDao.selectByNameList(con, stayArea, stayCode);
+		
+		return list;
+	}
+
+	public List<String> selectByStayInfo(String stayName) {
+		Connection con = JDBCTemplate.getConnection();
+		List<String> list = stayDao.selectByStayInfo(con, stayName);
 		
 		return list;
 	}
