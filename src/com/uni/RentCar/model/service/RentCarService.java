@@ -12,6 +12,22 @@ public class RentCarService {
 
 	private RentCarDao rentcarDao = new RentCarDao();
 	
+	public int UpdatereturnDate(String car_no, String udpatereturndate, String updatereturnsecond ) {
+		
+		Connection conn = getConnection();
+		
+		// 차 번호, 반납 날짜 매개변수로
+		// int ca = rentcarDao.UpdatereturnDate(conn, car_no, udpatereturndate);
+		int ca = rentcarDao.UpdatereturnDate(conn, "1001", udpatereturndate, updatereturnsecond);
+		
+		if(ca > 0 ) {
+			commit(conn);
+		}else {
+			rollback(conn);
+		}
+		return ca;
+	}
+	
 	
 	public ArrayList<RentCarDto> selectDate(String str) {
 		
@@ -46,6 +62,15 @@ public class RentCarService {
 		Connection conn = getConnection();
 		ArrayList<RentCarDto> list = rentcarDao.selectAll(conn);
 		return list;
+	}
+	
+	// 자동차 차종 선택 
+	public  ArrayList<RentCarDto> selectsection(String inputCarSection) {
+		
+		Connection conn = getConnection();
+		 ArrayList<RentCarDto> list = rentcarDao.selectsection(conn, inputCarSection);
+		return list;
+		
 	}
 
 	public RentCarDto selectOne(String inputMemberId) {

@@ -1,15 +1,20 @@
 package com.uni.rentCar.view;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
 import com.uni.rentCar.controller.RentCarController;
+import com.uni.rentCar.fin_List.fin_List;
 import com.uni.rentCar.model.dto.RentCarDto;
 
 public class RentCarMenu {
 
 	private static Scanner sc = new Scanner(System.in);
 	private RentCarController RentCarController = new RentCarController();
+	
+	//테스트
+	//public ArrayList<RentCarDto> Final_reservation_car = new ArrayList<RentCarDto>();
 	
 	public void RentCarMenu() {
 		
@@ -21,12 +26,11 @@ public class RentCarMenu {
 			System.out.println("1. 전체 렌트카 조회 ");
 			System.out.println("2. 렌트카 인수 일자 ");
 			System.out.println("3. 렌트카 인수 시간 ");
-			System.out.println("4. 렌트카 반납 일자 ");
-			System.out.println("3. 렌트카 반납 시간 ");
-			System.out.println("8. 렌트카 차종 조회(사용하지 않는다.)");
+			System.out.println("4. 렌트카 반납 일자 시간 ");
+			System.out.println("5. 렌트카 차종 조회 (소형,중형,대형) ");
 			System.out.println("9. 프로그램 종료");
 			
-			System.out.println("번호를 입력하세요 : ");
+			System.out.println("메뉴 번호를 입력하세요 : ");
 			choice = sc.nextInt();
 			sc.nextLine();
 			
@@ -39,6 +43,12 @@ public class RentCarMenu {
 				break;
 			case 3:
 				RentCarController.selectTime();
+				break;
+			case 4:
+				RentCarController.UpdatereturnDate();
+				break;
+			case 5:
+				RentCarController.selectCarSection();
 				break;
 			case 9:
 				
@@ -205,5 +215,32 @@ public class RentCarMenu {
 		System.out.println("서비스 요청 결과 : "+message)  ;
 	}
 		
+	
+	
+	// ======================= 마지막 리스트 출력하기 ====================
+	
+	public void displayfinRentCar(ArrayList<RentCarDto> finRentCar) {
+		
+		
+		// 최종 예약된 렌트카 출력 
+		System.out.println("==================================== 최종 예약된 렌트카=========================================");
+		for(int i = 0; i < finRentCar.size(); ++i) {
+			
+			System.out.println(finRentCar.get(i));
+		}
+		
+		
+		
+		// 최종 예약된 렌트카를 Final_reservation_car에 넣는다.
+		for(int i = 0; i < finRentCar.size(); ++i) {
+			
+			//Final_reservation_car.set(i, finRentCar.get(i));
+		}
+		
+	}
+	
+	
+	
+	
 	
 }

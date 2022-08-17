@@ -23,7 +23,7 @@ public class RentCarDao {
 		ResultSet rset = null;// SELECT 후 결과값 받아올객체
 		ArrayList<RentCarDto> list = null;
 		
-		String sql = "SELECT * FROM rentcar WHERE rentcar_date = ?";
+		String sql = "SELECT * FROM rentcar WHERE rentcar_date > ?";
 		
 		try {
 			
@@ -80,13 +80,70 @@ public class RentCarDao {
 			ResultSet rset = null;// SELECT 후 결과값 받아올객체
 			ArrayList<RentCarDto> list = null;
 			
-			String sql = "SELECT * FROM rentcar WHERE rentcar_datetime > ?";
+			String sql = "SELECT * FROM rentcar WHERE rentcar_datetime >= ?";
 			
 			try {
 				
 				// 형식 : YYYY-mm-dd 형식
 				pstmt = conn.prepareStatement(sql);
 				pstmt.setString(1, Time);
+				
+				//4.쿼리문을 전송, 실행한 결과를 resultset으로 받기
+				
+				rset = pstmt.executeQuery();
+				
+				list = new ArrayList<RentCarDto>();
+				
+				while(rset.next()) {
+					
+					RentCarDto ca = new RentCarDto();
+					
+					ca.setRentcar_no(rset.getInt("rentcar_no"));
+					ca.setCar_no(rset.getString("car_no"));
+					ca.setRentcar_model(rset.getString("rentcar_model"));
+					ca.setRentcar_date(rset.getDate("rentcar_date"));
+					ca.setRentcar_datetime(rset.getTime("rentcar_datetime"));
+					ca.setRentcar_enddate(rset.getDate("rentcar_enddate"));
+					ca.setRentcar_endtime(rset.getTime("rentcar_endtime"));
+					ca.setRentcar_renttime(rset.getInt("rentcar_renttime"));
+					ca.setRentcar_price(rset.getInt("rentcar_price"));
+					ca.setRentcar_section(rset.getString("rentcar_section"));
+					ca.setRentcar_fuel(rset.getString("rentcar_fuel"));
+					ca.setRentcar_limit(rset.getInt("rentcar_limit"));
+					ca.setRentcar_time(rset.getString("rentcar_time"));
+					list.add(ca);
+				}
+				
+				
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			} finally {
+					close(rset);
+					close(pstmt);
+			}
+			
+			return list;
+		}
+		
+		
+		public ArrayList<RentCarDto> selectsection (Connection conn, String inputCarSection) {
+			
+			
+			// Date 타입으로 디비에 보내야 한다. (String으로 되는지 확인)
+			
+			//RentCarDto ca = null;
+			PreparedStatement pstmt = null;
+			ResultSet rset = null;// SELECT 후 결과값 받아올객체
+			ArrayList<RentCarDto> list = null;
+			
+			String sql = "SELECT * FROM rentcar WHERE rentcar_section = ?";
+			
+			try {
+				
+				// 형식 : YYYY-mm-dd 형식
+				pstmt = conn.prepareStatement(sql);
+				pstmt.setString(1, inputCarSection);
 				
 				//4.쿼리문을 전송, 실행한 결과를 resultset으로 받기
 				
@@ -228,23 +285,8 @@ public class RentCarDao {
 			
 			//5. 받은 결과값을 객체에 옮겨서 저장하기 
 			list = new ArrayList<RentCarDto>();
-			/*
-			 * USERID
-				PASSWORD
-				USERNAME
-				GENDER
-				AGE
-				EMAIL
-				PHONE
-				ADDRESS
-				HOBBY
-				ENROLLDATE
-			 * 
-			 * 
-			 * */
+			
 			while(rset.next()) {
-				//https://www.tutorialspoint.com/jdbc/jdbc-data-types.htm
-				//Member m = new Member();
 				
 				RentCarDto ca = new RentCarDto();
 				
@@ -374,6 +416,36 @@ public class RentCarDao {
 		}
 
 		return list;
+	}
+	
+	// RentCar 반납 날짜, 시간 설정 
+	public int UpdatereturnDate(Connection conn, String car_no, String udpatereturndate, String updatereturnsecond) {
+		
+		int result = 0;
+		
+		PreparedStatement pstmt = null;
+		
+		String sql = "UPDATE rentcar SET rentcar_enddate = ?, rentcar_endtime = ? WHERE rentcar_no = ?";
+		
+		
+		try {
+			
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, udpatereturndate);
+			pstmt.setString(2, updatereturnsecond);
+			pstmt.setString(3, car_no);
+			
+			result = pstmt.executeUpdate();// 처리한 행의 갯수 리턴 (int) , 에러 -1
+
+				
+		}  catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}finally {
+			close(pstmt);
+		}
+		
+		return result;
 	}
 
 	public int insertMember(Connection conn, RentCarDto m) {
