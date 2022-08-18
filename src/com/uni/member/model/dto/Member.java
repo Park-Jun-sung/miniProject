@@ -1,7 +1,6 @@
 package com.uni.member.model.dto;
 
 import java.io.Serializable;
-import java.sql.Date;
 
 public class Member implements Serializable{
 	private static final long serialVersionUID = 6346615596757676147L;

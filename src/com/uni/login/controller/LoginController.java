@@ -1,7 +1,6 @@
 package com.uni.login.controller;
 
 import com.uni.login.service.LoginService;
-import com.uni.login.view.LoginMenu;
 import com.uni.member.model.dto.Member;
 
 public class LoginController {
@@ -13,7 +12,7 @@ public class LoginController {
 		
 		Member m = loginService.checkUser(member);
 		
-		if(m.getMember_id() == null || !m.getMember_id().equals(inputId)) {
+		if(m.getMember_id() == null) {
 			m = new Member();
 			System.out.println(inputId + " 아이디가 없습니다.");
 		}else {
