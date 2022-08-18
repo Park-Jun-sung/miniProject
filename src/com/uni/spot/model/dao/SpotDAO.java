@@ -10,6 +10,8 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.uni.login.view.LoginMenu;
+import com.uni.main.view.MainMenu;
 import com.uni.spot.model.dto.SpotDto;
 
 
@@ -59,26 +61,32 @@ public class SpotDao {
 	}
 	
 	
-	public int bookingSpot(Connection conn, Int spotNo) {
+	public int bookingSpot(Connection conn, int spotNo) {
 		int result = 0;
+		
 		
 		PreparedStatement pstmt = null;
 		
-		String sql = "INSERT INTO booking VALUES (null, ?, null, null, null, null, ?, now(), ?, null)";
+		String sql = "INSERT INTO booking VALUES (null, ?, null, null, null, null, ?, now(), 2, null)";
 		
 		
 		try {
 					
-			con.setAutoCommit(false);
+			 conn.setAutoCommit(false);
+	         pstmt = conn.prepareStatement(sql); 
 	         
-	         pstmt = con.prepareStatement(sql);
-			 pstmt.setInt(1, b.getMemberNo());
-	         pstmt.setInt(2, b.getStayNo());
-	         pstmt.setInt(3, b.getBookingSection());
-	         
+			 pstmt.setInt(1, MainMenu.member.getMember_no());
+	         pstmt.setInt(2, spotNo);
+	        
+			
 	         result = pstmt.executeUpdate();// 처리한 행의 갯수 리턴 (int) , 에러 -1
 
-	       
+	         if(result > 0) {
+	        	 conn.commit();// 적용
+	         }
+	         else {
+	        	 conn.rollback();   // 되돌리기
+	         }
 
 				
 		}catch (SQLException e) {

@@ -4,6 +4,7 @@ import java.util.Scanner;
 
 import com.uni.flight.view.FlightMenu;
 import com.uni.rentCar.view.RentCarMenu;
+import com.uni.spot.view.SpotMenu;
 import com.uni.stay.view.StayMenu;
 
 public class BookingMenu {
@@ -33,7 +34,7 @@ public class BookingMenu {
 					new FlightMenu().mainMenu();
 					break;
 				case 2://관광지
-//					new SpotMenu().mainMenu();
+					new SpotMenu().areaMenu();
 					break;
 				case 3://렌트카
 					new RentCarMenu().RentCarMenu();
