@@ -10,6 +10,11 @@ public class MainMenu {
 	private static Scanner sc = new Scanner(System.in);
 	public static Member member;
 
+	/**
+	 * <pre>
+	 * 로그인 후 돌하르방 프로젝트 메인 페이지
+	 * </pre>
+	 */
 	public void mainMenu() {
 //		System.out.println("로그인 확인 : " + member.toString());
 		int choice;

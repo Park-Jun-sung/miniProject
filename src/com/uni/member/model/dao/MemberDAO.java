@@ -1,6 +1,6 @@
 package com.uni.member.model.dao;
 
-import static com.uni.common.JDBCTemplate.close;
+import static com.uni.common.JDBCTemplate.*;
 
 import java.io.FileNotFoundException;
 import java.io.FileReader;
