@@ -1,4 +1,5 @@
 package com.uni.rentCar.view;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
@@ -40,6 +41,7 @@ public class RentCarMenu {
 			System.out.println("5. 렌트카 차종 조회 (소형,중형,대형) ");
 			System.out.println("6. 최종 예약 조회 ");
 			System.out.println("7. 예약 결정 ");
+			System.out.println("8. 예약이 된 렌트카 ");
 			System.out.println("9. 프로그램 종료");
 			
 			System.out.println("메뉴 번호를 입력하세요 : ");
@@ -57,7 +59,7 @@ public class RentCarMenu {
 				RentCarController.selectTime();
 				break;
 			case 4:
-				RentCarController.UpdatereturnDate();
+				RentCarController.UpdatereturnDate(dto);
 				break;
 			case 5:
 				RentCarController.selectCarSection();
@@ -67,6 +69,10 @@ public class RentCarMenu {
 				break;
 			case 7:
 				RentCarController.InsertReserTable();
+				break;
+			case 8:
+				System.out.print("예약된 테이블에서 가지고 오는것은 구현이 아직 안됨");
+				RentCarController.ReservedCarDisplay(dto);
 				break;
 			case 9:
 				
@@ -135,6 +141,12 @@ public class RentCarMenu {
 	 */
 	public void displayfinRentCar(RentCarDto rentcar) {
 		
+		SimpleDateFormat sim = new SimpleDateFormat("yyyy-MM-dd");
+		SimpleDateFormat sim2 = new SimpleDateFormat("HH:mm:ss");
+		
+		String enddate = sim.format(rentcar.getRentcar_enddate());
+        String endtime = sim2.format(rentcar.getRentcar_endtime());
+		
 		System.out.println("-------------------------------------------------------------------------------------------------------");
 		System.out.print("\t렌트번호");
 		System.out.print("\t\t\t차량번호");
@@ -148,8 +160,8 @@ public class RentCarMenu {
 		System.out.println("\t\t\t반납시간");
 		System.out.print("\t" + rentcar.getRentcar_date());
 		System.out.print("\t\t" + rentcar.getRentcar_datetime());
-		System.out.print("\t\t" + rentcar.getRentcar_enddate());
-		System.out.println("\t\t" + rentcar.getRentcar_endtime());
+		System.out.print("\t\t" + enddate);
+		System.out.println("\t\t\t" + endtime);
 		
 		System.out.println("-------------------------------------------------------------------------------------------------------");
 		System.out.print("\t대여기간");
@@ -166,7 +178,7 @@ public class RentCarMenu {
 		System.out.print("\t" + rentcar.getRentcar_limit());
 		System.out.println("\t" + rentcar.getRentcar_time());
 		
-		System.out.print("-------------------------------------------------------------------------------------------------------");
+		System.out.println("-------------------------------------------------------------------------------------------------------");
 		
 		
 		

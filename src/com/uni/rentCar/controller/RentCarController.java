@@ -1,5 +1,8 @@
 package com.uni.rentCar.controller;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import java.util.Scanner;
 import com.uni.rentCar.fin_List.fin_List;
@@ -64,7 +67,7 @@ public class RentCarController {
 		String str = sc.next();
 		sc.nextLine();
 		
-		Carmenu = new RentCarMenu();
+		//Carmenu = new RentCarMenu();
 		
 		if (str.equals("y") || str.equals("Y")) {
 			
@@ -93,19 +96,42 @@ public class RentCarController {
 	 */
 	public void ReservationCar() {
 		
-		Carmenu = new RentCarMenu();
+		//Carmenu = new RentCarMenu();
 		
 		Carmenu.displayfinRentCar(List_book_date.book_fin(Final_appointment_Rentcar_list));
 		
 	}
 	
 	
-	// 반납 날짜는 나중에 기입 
-	public void UpdatereturnDate() {
+	public void ReservedCarDisplay(RentCarDto rentcardto) {
+		
+		
+		RentCarMenu Carmenu = new RentCarMenu();
+		
+		ArrayList<RentCarDto> car_list = RentcarService.Reserved_RentCar(rentcardto);
+		
+		
+		// 날짜를 조회한 테이블을 출력 함 
+		// 리스트객체를 이미 만들었기때문에 null 이될수 없고 비워져있는지로 구분
+		if(!car_list.isEmpty()) {
+			Carmenu.displayRentCarList(car_list);
+		}else {
+			Carmenu.displayError("해당되는 데이터가 없습니다.");
+		}
+		
+	}
+	
+	
+	 
+	/**
+	 * @param RentCarDto rentcardto 전역변수로 설정한 dto로 정보를 받는다.
+	 */
+	public void UpdatereturnDate(RentCarDto rentcardto) {
 		
 		Scanner sc = new Scanner(System.in);
 		RentCarMenu Carmenu = new RentCarMenu();
 		
+		System.out.println("인수 날짜는 : " + rentcardto.getRentcar_date() + " 입니다");
 		System.out.println("반납 날짜를 입력하세요 : (예 20220809)");
 		String str_date_sel = sc.next();
 		sc.nextLine();
@@ -120,15 +146,36 @@ public class RentCarController {
 		StrTime str_sec = new StrTime();
 		String Return_second = str_sec.str_time(str_sec_sel);
 		
-		int result = RentcarService.UpdatereturnDate(RentCarMenu.dto.getRentcar_no(), Return_date, Return_second);
+		// 데이터 타입의 인수 날짜와 스트링의 반납날짜를 빼야 한다.(대여기간)
+		int result_renttime = SubInOut(RentCarMenu.dto.getRentcar_date(), Return_date);
 		
-		// 아 반납은 차가 결정 되고 나서 반납 날짜가 정해져야 업데이트를 할 수 있구나.
-		// 렌트카가 하나가 나올테니깐 
+		// 대여기간 최종 리스트에 대입
+		RentCarMenu.dto.setRentcar_renttime(result_renttime);
+		//rentcardto.setRentcar_renttime(result_renttime);
+		
+		// 대여기간만큼 가격이 측정되게 함 
+		//int renttime_price = rentcardto.getRentcar_price() * result_renttime;
+		int renttime_price = RentCarMenu.dto.getRentcar_price() * result_renttime;
+		RentCarMenu.dto.setRentcar_price(renttime_price);
+		//rentcardto.setRentcar_price(renttime_price);
+		
+		// 반납 날짜 대입
+		RentCarMenu.dto.setRentcar_enddate(returndate(Return_date));
+		//rentcardto.setRentcar_enddate(returndate(Return_date));
+		
+		// 반납 시간 대입 
+		RentCarMenu.dto.setRentcar_endtime(returntime(Return_second));
+		//rentcardto.setRentcar_endtime(returntime(Return_second));
+		//======================================================
+		
+		Carmenu.displayfinRentCar(RentCarMenu.dto);
+		
+		int result = RentcarService.UpdatereturnDate(rentcardto.getRentcar_no(), Return_date, Return_second);
 		
 		if(result > 0 ) {	
-			new RentCarMenu().displaySuccess("렌트카 정보 수정 성공");
+			new RentCarMenu().displaySuccess("렌트카 반납날짜 입력 성공");
 		}else {
-			new RentCarMenu().displayError("렌트카 정보 수정 실패");
+			new RentCarMenu().displayError("렌트카 반납날짜 입력 실패");
 		}
 		
 	}
@@ -190,8 +237,6 @@ public class RentCarController {
 		StrTime str_time = new StrTime();
 		String Selec_time = str_time.str_time(str);
 		ArrayList<RentCarDto> ca_list = RentcarService.selectTime(Selec_time);
-		
-		
 		
 		// ============================================
 		// 인수 날짜 조회한 리스트를 다시 인수 시간을 조회
@@ -266,5 +311,84 @@ public class RentCarController {
 		RentcarService.exitProgram();
 		
 	}
+	
+	
+	// 인수날짜와 반납 날짜를 뺀 결과로 대여기간을 나타나게 한다.
+	public int SubInOut(Date indate, String outdate) {
+
+		Date rent_date = indate;
+		
+		SimpleDateFormat dateformat = new SimpleDateFormat("YYYY-mm-dd");
+		
+		// String의 인수 날짜가 출력됨 
+		String Str_format_rentdate = dateformat.format(rent_date);
+		
+		
+		// 2020-02-02에 뒤에 숫자리만 출력
+		String two_rentdate = Str_format_rentdate.substring(Str_format_rentdate.length() - 2, Str_format_rentdate.length());
+		String two_returndate = outdate.substring(outdate.length() - 2, outdate.length());
+		
+		int two_rentdate_int = Integer.parseInt(two_rentdate);
+		int two_returndate_int = Integer.parseInt(two_returndate);
+		
+		int result_rentdate_time = two_returndate_int - two_rentdate_int;
+		
+		return result_rentdate_time;
+		
+	}
+	
+	public Date returndate(String str) {
+		
+		
+		System.out.println(str);
+		
+		SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
+		
+		Date da;
+				
+		try {
+			
+			da = format.parse(str);
+			
+			System.out.println(da);
+			
+			SimpleDateFormat format2 = new SimpleDateFormat("yyyy-MM-dd");
+			
+			String str2 = format2.format(da);
+			
+			System.out.println("==============");
+			System.out.println(str2);
+			
+			return da;
+			
+		} catch (ParseException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		return null;
+	}
+	
+	public Date returntime(String str) {
+		
+		String str2 = str + ":00";
+		
+		SimpleDateFormat format = new SimpleDateFormat("HH:mm:ss");
+		
+		Date da;
+		try {
+			
+			da = format.parse(str2);
+			
+			return da;
+			
+		} catch (ParseException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		return null;
+	}
+	
 	
 }

@@ -25,6 +25,55 @@ import com.uni.rentCar.model.dto.RentCarDto;
  * */
 public class RentCarDao {
 	
+	public ArrayList<RentCarDto> Reserved_RentCar(Connection conn, RentCarDto cardto) {
+			
+			ArrayList<RentCarDto> list = null;
+			PreparedStatement pstmt = null;
+			ResultSet rset = null;
+			
+			
+			String sql = "SELECT * FROM booking WHERE rentcar_no = ?";
+			
+			try {
+				
+				pstmt = conn.prepareStatement(sql);
+				pstmt.setInt(1, 4000);
+				rset = pstmt.executeQuery();
+				
+				list = new ArrayList<RentCarDto>();
+				
+				while(rset.next()) {
+					
+					RentCarDto ca = new RentCarDto();
+					
+					ca.setRentcar_no(rset.getInt("rentcar_no"));
+					ca.setCar_no(rset.getString("car_no"));
+					ca.setRentcar_model(rset.getString("rentcar_model"));
+					ca.setRentcar_date(rset.getDate("rentcar_date"));
+					ca.setRentcar_datetime(rset.getTime("rentcar_datetime"));
+					ca.setRentcar_enddate(rset.getDate("rentcar_enddate"));
+					ca.setRentcar_endtime(rset.getTime("rentcar_endtime"));
+					ca.setRentcar_renttime(rset.getInt("rentcar_renttime"));
+					ca.setRentcar_price(rset.getInt("rentcar_price"));
+					ca.setRentcar_section(rset.getString("rentcar_section"));
+					ca.setRentcar_fuel(rset.getString("rentcar_fuel"));
+					ca.setRentcar_limit(rset.getInt("rentcar_limit"));
+					ca.setRentcar_time(rset.getString("rentcar_time"));
+					list.add(ca);
+				}
+				
+				
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			} finally {
+					close(rset);
+					close(pstmt);
+			}
+			
+			return list;
+	}
+	
 	
 	/**
 	 * @param Connection conn Connection 연결하기 위한 매개변수
@@ -308,7 +357,6 @@ public class RentCarDao {
 			
 			result = pstmt.executeUpdate();
 
-				
 		}  catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
