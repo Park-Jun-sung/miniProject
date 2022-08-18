@@ -30,7 +30,16 @@ public class SpotController {
 	public void bookingSpot(String spot) {
 		
 		
-		int result = spotService.bookingSpot(spot);
+		List<SpotDto> list = spotService.selectByName(spot);
+		int spotNo =1;
+		for(SpotDto l : list) {
+			
+			spotNo=l.getSpotNo();
+		}
+		
+		if(spotService.bookingSpot(spotNo) ==1) {
+			System.out.println("예약이 완료 되었습니다다.");
+		}
 		
 	
 	}

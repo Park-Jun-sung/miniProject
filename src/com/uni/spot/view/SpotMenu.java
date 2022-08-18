@@ -4,7 +4,6 @@ import java.util.List;
 import java.util.Scanner;
 
 import com.uni.spot.controller.SpotController;
-import com.uni.spot.model.dto.BookingSpot;
 import com.uni.spot.model.dto.SpotDto;
 
 import com.uni.main.view.MainMenu;
@@ -14,7 +13,6 @@ public class SpotMenu {
 	MainMenu mainMenu = new MainMenu();
 
 	private Scanner sc = new Scanner(System.in);
-	BookingSpot bookingspot = new BookingSpot();
 	SpotController spotcontroller = new SpotController();
 	SpotDto dto = new SpotDto();
 	
@@ -135,7 +133,7 @@ public class SpotMenu {
 		System.out.print("해수욕장을 선택해주세요(해수욕장명 입력) : ");
 		String museumchoice = sc.nextLine();
 		System.out.println();
-		bookingspot.setSpotName(museumchoice);
+	
 		
 		showAll(museumchoice);
 		
@@ -152,7 +150,6 @@ public class SpotMenu {
 		
 		System.out.print("박물관을 선택해주세요(박물관명 입력) : ");
 		String museumchoice = sc.nextLine();
-		bookingspot.setSpotName(museumchoice);
 		
 		showAll(museumchoice);
 		
@@ -167,7 +164,6 @@ public class SpotMenu {
 		
 		System.out.print("공원을 선택해주세요 (공원명 입력): ");
 		String museumchoice = sc.nextLine();
-		bookingspot.setSpotName(museumchoice);
 		
 		showAll(museumchoice);
 		
@@ -182,7 +178,6 @@ public class SpotMenu {
 		
 		System.out.print("전통시장을 선택해주세요 (전통시장명 입력): ");
 		String museumchoice = sc.nextLine();
-		bookingspot.setSpotName(museumchoice);
 		
 		showAll(museumchoice);
 		
