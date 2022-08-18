@@ -7,7 +7,7 @@ public class StrDate {
 		String[] str = new String[temp.length()];
 		char[] ch = new char[temp.length()];
 		
-		// 날짜 char 배열 
+		// 占쏙옙짜 char 占썼열 
 		char[] ch2 = new char[10];
 		ch2[4] = '-';
 		ch2[7] = '-';
@@ -15,9 +15,7 @@ public class StrDate {
 		int temp_index = 0;
 		boolean flag = false;
 		
-		// 예를 들어서 20190923 입력 -> date로 2019-02-03으로 변환해야 한다. 
 		
-		// String 배열에 넣는다.
 		for (int i = 0; i < temp.length(); ++i) {
 			
 			ch[i] = temp.charAt(i);

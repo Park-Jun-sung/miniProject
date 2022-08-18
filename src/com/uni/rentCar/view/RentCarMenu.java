@@ -13,7 +13,7 @@ public class RentCarMenu {
 	private static Scanner sc = new Scanner(System.in);
 	private RentCarController RentCarController = new RentCarController();
 	
-	//Å×½ºÆ®
+	//í…ŒìŠ¤íŠ¸
 	//public ArrayList<RentCarDto> Final_reservation_car = new ArrayList<RentCarDto>();
 	
 	public void RentCarMenu() {
@@ -22,15 +22,15 @@ public class RentCarMenu {
 		
 		while(true) {
 			
-			System.out.println("\n=========== ·»ÅÍÄ« ¿¹¾à ÇÁ·Î±×·¥ =============");
-			System.out.println("1. ÀüÃ¼ ·»Æ®Ä« Á¶È¸ ");
-			System.out.println("2. ·»Æ®Ä« ÀÎ¼ö ÀÏÀÚ ");
-			System.out.println("3. ·»Æ®Ä« ÀÎ¼ö ½Ã°£ ");
-			System.out.println("4. ·»Æ®Ä« ¹İ³³ ÀÏÀÚ ½Ã°£ ");
-			System.out.println("5. ·»Æ®Ä« Â÷Á¾ Á¶È¸ (¼ÒÇü,ÁßÇü,´ëÇü) ");
-			System.out.println("9. ÇÁ·Î±×·¥ Á¾·á");
+			System.out.println("\n=========== ë Œí„°ì¹´ ì˜ˆì•½ í”„ë¡œê·¸ë¨ =============");
+			System.out.println("1. ì „ì²´ ë ŒíŠ¸ì¹´ ì¡°íšŒ ");
+			System.out.println("2. ë ŒíŠ¸ì¹´ ì¸ìˆ˜ ì¼ì ");
+			System.out.println("3. ë ŒíŠ¸ì¹´ ì¸ìˆ˜ ì‹œê°„ ");
+			System.out.println("4. ë ŒíŠ¸ì¹´ ë°˜ë‚© ì¼ì ì‹œê°„ ");
+			System.out.println("5. ë ŒíŠ¸ì¹´ ì°¨ì¢… ì¡°íšŒ (ì†Œí˜•,ì¤‘í˜•,ëŒ€í˜•) ");
+			System.out.println("9. í”„ë¡œê·¸ë¨ ì¢…ë£Œ");
 			
-			System.out.println("¸Ş´º ¹øÈ£¸¦ ÀÔ·ÂÇÏ¼¼¿ä : ");
+			System.out.println("ë©”ë‰´ ë²ˆí˜¸ë¥¼ ì…ë ¥í•˜ì„¸ìš” : ");
 			choice = sc.nextInt();
 			sc.nextLine();
 			
@@ -52,10 +52,10 @@ public class RentCarMenu {
 				break;
 			case 9:
 				
-				System.out.println("Á¤¸»·Î ³¡³»½Ã°Ú½À´Ï±î??(y/n)");
+				System.out.println("ì •ë§ë¡œ ëë‚´ì‹œê² ìŠµë‹ˆê¹Œ??(y/n)");
 				if ('y' == sc.next().toLowerCase().charAt(0)) {
 					
-					// DB¿¡ ¿¬°áÀ» ²÷°í while¹®À» ºüÁ®³ª°£´Ù.
+					// DBì— ì—°ê²°ì„ ëŠê³  whileë¬¸ì„ ë¹ ì ¸ë‚˜ê°„ë‹¤.
 					RentCarController.exitProgram();
 					return;
 				}
@@ -71,21 +71,21 @@ public class RentCarMenu {
 
 //		do {
 //			
-//			System.out.println("\n============ ·»ÅÍÄ« ¿¹¾à ÇÁ·Î±×·¥  ==============");
-//			System.out.println("1. ÀÎ¼ö ÀÏÀÚ Á¶È¸");
-//			System.out.println("2. ÀÎ¼ö ½Ã°£ Á¶È¸ (8:00 ~ 20:00 2½Ã°£ ¸¶´Ù)");
-//			System.out.println("3. ¹İ³³ ÀÏÀÚ Á¶È¸" + "(udpate·Î ÀÚ¹Ù¿¡¼­ ½Ã°£À» ¹Ş´Â´Ù)");
-//			System.out.println("4. ¹İ³³ ½Ã°£ Á¶È¸" + "(¹İ³³ÀÏÀÚ¶û ÀÌÇÏ µ¿¹®)");
+//			System.out.println("\n============ ë Œí„°ì¹´ ì˜ˆì•½ í”„ë¡œê·¸ë¨  ==============");
+//			System.out.println("1. ì¸ìˆ˜ ì¼ì ì¡°íšŒ");
+//			System.out.println("2. ì¸ìˆ˜ ì‹œê°„ ì¡°íšŒ (8:00 ~ 20:00 2ì‹œê°„ ë§ˆë‹¤)");
+//			System.out.println("3. ë°˜ë‚© ì¼ì ì¡°íšŒ" + "(udpateë¡œ ìë°”ì—ì„œ ì‹œê°„ì„ ë°›ëŠ”ë‹¤)");
+//			System.out.println("4. ë°˜ë‚© ì‹œê°„ ì¡°íšŒ" + "(ë°˜ë‚©ì¼ìë‘ ì´í•˜ ë™ë¬¸)");
 //			
 //			
-//			/*System.out.println("1.È¸¿ø ÀüÃ¼ Á¶È¸");// SELECT
-//			System.out.println("2.È¸¿ø ¾ÆÀÌµğ Á¶È¸");// SELECT
-//			System.out.println("3.È¸¿ø ÀÌ¸§ Á¶È¸");// SELECT
-//			System.out.println("4.È¸¿ø °¡ÀÔ");// INSERT
-//			System.out.println("5.È¸¿ø Á¤º¸ º¯°æ");// UPDATE
-//			System.out.println("6.È¸¿ø Å»Åğ");// DELETE
-//			System.out.println("9.ÇÁ·Î±×·¥ ³¡³»±â");// Á¾·á
-//			System.out.println("¹øÈ£¼±ÅÃ : ");*/
+//			/*System.out.println("1.íšŒì› ì „ì²´ ì¡°íšŒ");// SELECT
+//			System.out.println("2.íšŒì› ì•„ì´ë”” ì¡°íšŒ");// SELECT
+//			System.out.println("3.íšŒì› ì´ë¦„ ì¡°íšŒ");// SELECT
+//			System.out.println("4.íšŒì› ê°€ì…");// INSERT
+//			System.out.println("5.íšŒì› ì •ë³´ ë³€ê²½");// UPDATE
+//			System.out.println("6.íšŒì› íƒˆí‡´");// DELETE
+//			System.out.println("9.í”„ë¡œê·¸ë¨ ëë‚´ê¸°");// ì¢…ë£Œ
+//			System.out.println("ë²ˆí˜¸ì„ íƒ : ");*/
 //
 //			choice = sc.nextInt();
 //
@@ -109,7 +109,7 @@ public class RentCarMenu {
 //				memberController.deleteMember(inputMemberId());
 //				break;
 //			case 9:
-//				System.out.println("Á¤¸»·Î ³¡³»½Ã°Ú½À´Ï±î??(y/n)");
+//				System.out.println("ì •ë§ë¡œ ëë‚´ì‹œê² ìŠµë‹ˆê¹Œ??(y/n)");
 //				if ('y' == sc.next().toLowerCase().charAt(0)) {
 //					memberController.exitProgram();
 //					return;
@@ -118,7 +118,7 @@ public class RentCarMenu {
 //				break;
 //
 //			default:
-//				System.out.println("¹øÈ£¸¦ Àß¸øÀÔ·ÂÇÏ¿´½À´Ï´Ù.");
+//				System.out.println("ë²ˆí˜¸ë¥¼ ì˜ëª»ì…ë ¥í•˜ì˜€ìŠµë‹ˆë‹¤.");
 //			}
 //
 //		} while (true);
@@ -129,14 +129,14 @@ public class RentCarMenu {
 		RentCarDto rent = new RentCarDto();
 		
 //		m.setUserId(inputMemberId());
-//		System.out.println("¾ÏÈ£ : ");
+//		System.out.println("ì•”í˜¸ : ");
 //		m.setPassword(sc.next());
-//		System.out.println("ÀÌ¸ŞÀÏ : ");
+//		System.out.println("ì´ë©”ì¼ : ");
 //		m.setEmail(sc.next());
-//		System.out.println("ÀüÈ­¹øÈ£(-»©°íÀÔ·Â) : ");
+//		System.out.println("ì „í™”ë²ˆí˜¸(-ë¹¼ê³ ì…ë ¥) : ");
 //		m.setPhone(sc.next());
-//		System.out.println("ÁÖ¼Ò : ");
-//		sc.nextLine();//ÀÔ·Â¹öÆÛÀÇ enter Å° Á¦°Å
+//		System.out.println("ì£¼ì†Œ : ");
+//		sc.nextLine();//ì…ë ¥ë²„í¼ì˜ enter í‚¤ ì œê±°
 //		m.setAddress(sc.nextLine());
 
 		return rent;
@@ -146,25 +146,25 @@ public class RentCarMenu {
 		
 		RentCarDto rent = new RentCarDto();
 		
-//		System.out.println("»õ·Î¿î È¸¿øÁ¤º¸¸¦ ÀÔ·ÂÇÏ¼¼¿ä >>");
-//		System.out.println("¾ÆÀÌµğ : ");
+//		System.out.println("ìƒˆë¡œìš´ íšŒì›ì •ë³´ë¥¼ ì…ë ¥í•˜ì„¸ìš” >>");
+//		System.out.println("ì•„ì´ë”” : ");
 //		m.setUserId(sc.next());
-//		System.out.println("¾ÏÈ£ : ");
+//		System.out.println("ì•”í˜¸ : ");
 //		m.setPassword(sc.next());
-//		System.out.println("ÀÌ¸§ : ");
+//		System.out.println("ì´ë¦„ : ");
 //		m.setUserName(sc.next());
-//		System.out.println("³ªÀÌ : ");
+//		System.out.println("ë‚˜ì´ : ");
 //		m.setAge(sc.nextInt());
-//		System.out.println("¼ºº°(M/F) : ");
+//		System.out.println("ì„±ë³„(M/F) : ");
 //		m.setGender(sc.next().toUpperCase());
-//		System.out.println("ÀÌ¸ŞÀÏ : ");
+//		System.out.println("ì´ë©”ì¼ : ");
 //		m.setEmail(sc.next());
-//		System.out.println("ÀüÈ­¹øÈ£(-»©°íÀÔ·Â) : ");
+//		System.out.println("ì „í™”ë²ˆí˜¸(-ë¹¼ê³ ì…ë ¥) : ");
 //		m.setPhone(sc.next());
-//		System.out.println("ÁÖ¼Ò : ");
-//		sc.nextLine();//ÀÔ·Â¹öÆÛÀÇ enter Å° Á¦°Å
+//		System.out.println("ì£¼ì†Œ : ");
+//		sc.nextLine();//ì…ë ¥ë²„í¼ì˜ enter í‚¤ ì œê±°
 //		m.setAddress(sc.nextLine());
-//		System.out.println("Ãë¹Ì(, ·Î °ø¹é¾øÀÌ ÀÔ·Â) : ");
+//		System.out.println("ì·¨ë¯¸(, ë¡œ ê³µë°±ì—†ì´ ì…ë ¥) : ");
 //		m.setHobby(sc.next());
 		
 		
@@ -172,21 +172,21 @@ public class RentCarMenu {
 	}
 
 	private String inputMemberName() {
-		System.out.println("Á¶È¸ÇÒ È¸¿øÀÌ¸§ ÀÔ·Â : ");
+		System.out.println("ì¡°íšŒí•  íšŒì›ì´ë¦„ ì…ë ¥ : ");
 		return sc.next();
 	}
 
 	private String inputMemberId() {
-		System.out.println("¾ÆÀÌµğÀÔ·Â : ");
+		System.out.println("ì•„ì´ë””ì…ë ¥ : ");
 		return sc.next();
 	}
 
-	// ·»ÅÍÄ« Á¶È¸µÈ ¸®½ºÆ® ¸®ÅÏ
+	// ë Œí„°ì¹´ ì¡°íšŒëœ ë¦¬ìŠ¤íŠ¸ ë¦¬í„´
 	public void displayRentCarList(List<RentCarDto> list) {
-		//System.out.println("\nÁ¶È¸µÈ ÀüÃ¼ È¸¿øÁ¤º¸´Â ´ÙÀ½°ú °°½À´Ï´Ù.");
-		System.out.println("\nÁ¶È¸µÈ ÀüÃ¼ ·»ÅÍÄ« Á¤º¸´Â ´ÙÀ½°ú °°½À´Ï´Ù.");
-		System.out.println("\n·»Æ®¹øÈ£\tÂ÷·®¹øÈ£\tÂ÷Á¾\t  ÀÎ¼öÀÏÀÚ\t\tÀÎ¼ö½Ã°£"
-				+ "\t\t¹İ³³ÀÏÀÚ\t\t¹İ³³½Ã°£\t    ´ë¿©±â°£\t°¡°İ\t ºĞ·ù\t ¿¬·á\t Á¤¿ø\t ¿¬½Ä");
+		//System.out.println("\nì¡°íšŒëœ ì „ì²´ íšŒì›ì •ë³´ëŠ” ë‹¤ìŒê³¼ ê°™ìŠµë‹ˆë‹¤.");
+		System.out.println("\nì¡°íšŒëœ ì „ì²´ ë Œí„°ì¹´ ì •ë³´ëŠ” ë‹¤ìŒê³¼ ê°™ìŠµë‹ˆë‹¤.");
+		System.out.println("\në ŒíŠ¸ë²ˆí˜¸\tì°¨ëŸ‰ë²ˆí˜¸\tì°¨ì¢…\t  ì¸ìˆ˜ì¼ì\t\tì¸ìˆ˜ì‹œê°„"
+				+ "\t\të°˜ë‚©ì¼ì\t\të°˜ë‚©ì‹œê°„\t    ëŒ€ì—¬ê¸°ê°„\tê°€ê²©\t ë¶„ë¥˜\t ì—°ë£Œ\t ì •ì›\t ì—°ì‹");
 		System.out.println("------------------------------------------------------------------------------------------------------------------------------------");
 		
 		for (RentCarDto m : list) {
@@ -195,35 +195,35 @@ public class RentCarMenu {
 
 	}
 
-	// ¿¡·¯¸Ş½ÃÁö Ãâ·Â¿ë ¸Ş¼Òµå
+	// ì—ëŸ¬ë©”ì‹œì§€ ì¶œë ¥ìš© ë©”ì†Œë“œ
 	public void displayError(String message) {
-		System.out.println("¼­ºñ½º ¿äÃ» Ã³¸® ½ÇÆĞ : " + message);
+		System.out.println("ì„œë¹„ìŠ¤ ìš”ì²­ ì²˜ë¦¬ ì‹¤íŒ¨ : " + message);
 
 	}
 	
-	//¾ÆÀÌµğ·Î Á¶È¸µÈ È¸¿ø ÇÑ¸í Á¤º¸¸¦ Ãâ·ÂÇÒ ¸Ş¼Òµå
+	//ì•„ì´ë””ë¡œ ì¡°íšŒëœ íšŒì› í•œëª… ì •ë³´ë¥¼ ì¶œë ¥í•  ë©”ì†Œë“œ
 	public void displayMember(RentCarDto m) {
-		System.out.println("\nÁ¶È¸µÈ ÀüÃ¼ ·»ÅÍÄ« Á¤º¸´Â ´ÙÀ½°ú °°½À´Ï´Ù.");
-		System.out.println("\n·»Æ®¹øÈ£\tÂ÷·®¹øÈ£\tÂ÷Á¾\t  ÀÎ¼öÀÏÀÚ\t\tÀÎ¼ö½Ã°£"
-				+ "\t\t¹İ³³ÀÏÀÚ\t\t¹İ³³½Ã°£\t    ´ë¿©±â°£\t°¡°İ\t ºĞ·ù\t ¿¬·á\t Á¤¿ø\t ¿¬½Ä");
+		System.out.println("\nì¡°íšŒëœ ì „ì²´ ë Œí„°ì¹´ ì •ë³´ëŠ” ë‹¤ìŒê³¼ ê°™ìŠµë‹ˆë‹¤.");
+		System.out.println("\në ŒíŠ¸ë²ˆí˜¸\tì°¨ëŸ‰ë²ˆí˜¸\tì°¨ì¢…\t  ì¸ìˆ˜ì¼ì\t\tì¸ìˆ˜ì‹œê°„"
+				+ "\t\të°˜ë‚©ì¼ì\t\të°˜ë‚©ì‹œê°„\t    ëŒ€ì—¬ê¸°ê°„\tê°€ê²©\t ë¶„ë¥˜\t ì—°ë£Œ\t ì •ì›\t ì—°ì‹");
 		System.out.println("------------------------------------------------------------------------------------------------------------------------------------");
 		
 		System.out.println(m);
 	}
-	//¼º°ø ¸Ş¼¼Áö Ãâ·Â
+	//ì„±ê³µ ë©”ì„¸ì§€ ì¶œë ¥
 	public void displaySuccess(String message) {
-		System.out.println("¼­ºñ½º ¿äÃ» °á°ú : "+message)  ;
+		System.out.println("ì„œë¹„ìŠ¤ ìš”ì²­ ê²°ê³¼ : "+message)  ;
 	}
 		
 	
 	
-	// ======================= ¸¶Áö¸· ¸®½ºÆ® Ãâ·ÂÇÏ±â ====================
+	// ======================= ë§ˆì§€ë§‰ ë¦¬ìŠ¤íŠ¸ ì¶œë ¥í•˜ê¸° ====================
 	
 	public void displayfinRentCar(ArrayList<RentCarDto> finRentCar) {
 		
 		
-		// ÃÖÁ¾ ¿¹¾àµÈ ·»Æ®Ä« Ãâ·Â 
-		System.out.println("==================================== ÃÖÁ¾ ¿¹¾àµÈ ·»Æ®Ä«=========================================");
+		// ìµœì¢… ì˜ˆì•½ëœ ë ŒíŠ¸ì¹´ ì¶œë ¥ 
+		System.out.println("==================================== ìµœì¢… ì˜ˆì•½ëœ ë ŒíŠ¸ì¹´=========================================");
 		for(int i = 0; i < finRentCar.size(); ++i) {
 			
 			System.out.println(finRentCar.get(i));
@@ -231,7 +231,7 @@ public class RentCarMenu {
 		
 		
 		
-		// ÃÖÁ¾ ¿¹¾àµÈ ·»Æ®Ä«¸¦ Final_reservation_car¿¡ ³Ö´Â´Ù.
+		// ìµœì¢… ì˜ˆì•½ëœ ë ŒíŠ¸ì¹´ë¥¼ Final_reservation_carì— ë„£ëŠ”ë‹¤.
 		for(int i = 0; i < finRentCar.size(); ++i) {
 			
 			//Final_reservation_car.set(i, finRentCar.get(i));

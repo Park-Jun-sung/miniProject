@@ -15,7 +15,7 @@ public class RentCarController {
 
 	private RentCarService RentcarService = new RentCarService();
 	
-	// StackOverflow°¡ ³²
+	// StackOverflowê°€ ë‚¨
 	//public RentCarMenu Carmenu = new RentCarMenu();
 	
 	fin_List List_book_date = new fin_List();
@@ -26,11 +26,11 @@ public class RentCarController {
 		Scanner sc = new Scanner(System.in);
 		RentCarMenu Carmenu = new RentCarMenu();
 		
-		System.out.println("¹İ³³ ³¯Â¥¸¦ ÀÔ·ÂÇÏ¼¼¿ä : (¿¹ 20220809)");
+		System.out.println("ë°˜ë‚© ë‚ ì§œë¥¼ ì…ë ¥í•˜ì„¸ìš” : (ì˜ˆ 20220809)");
 		String str_date_sel = sc.next();
 		sc.nextLine();
 		
-		System.out.println("¹İ³³ ½Ã°£ ÀÔ·ÂÇÏ¼¼¿ä : ((¿¹ 8AM -> 8, 2pm -> 14)");
+		System.out.println("ë°˜ë‚© ì‹œê°„ ì…ë ¥í•˜ì„¸ìš” : ((ì˜ˆ 8AM -> 8, 2pm -> 14)");
 		String str_sec_sel = sc.next();
 		sc.nextLine();
 		
@@ -46,26 +46,26 @@ public class RentCarController {
 		
 		int result = RentcarService.UpdatereturnDate("1001", Return_date, Return_second);
 		
-		// ¾Æ ¹İ³³Àº Â÷°¡ °áÁ¤ µÇ°í ³ª¼­ ¹İ³³ ³¯Â¥°¡ Á¤ÇØÁ®¾ß ¾÷µ¥ÀÌÆ®¸¦ ÇÒ ¼ö ÀÖ±¸³ª.
-		// ·»Æ®Ä«°¡ ÇÏ³ª°¡ ³ª¿ÃÅ×´Ï±ñ 
+		// ì•„ ë°˜ë‚©ì€ ì°¨ê°€ ê²°ì • ë˜ê³  ë‚˜ì„œ ë°˜ë‚© ë‚ ì§œê°€ ì •í•´ì ¸ì•¼ ì—…ë°ì´íŠ¸ë¥¼ í•  ìˆ˜ ìˆêµ¬ë‚˜.
+		// ë ŒíŠ¸ì¹´ê°€ í•˜ë‚˜ê°€ ë‚˜ì˜¬í…Œë‹ˆê¹ 
 		
 		if(result > 0 ) {	
-			new RentCarMenu().displaySuccess("·»Æ®Ä« Á¤º¸ ¼öÁ¤ ¼º°ø");
+			new RentCarMenu().displaySuccess("ë ŒíŠ¸ì¹´ ì •ë³´ ìˆ˜ì • ì„±ê³µ");
 		}else {
-			new RentCarMenu().displayError("·»Æ®Ä« Á¤º¸ ¼öÁ¤ ½ÇÆĞ");
+			new RentCarMenu().displayError("ë ŒíŠ¸ì¹´ ì •ë³´ ìˆ˜ì • ì‹¤íŒ¨");
 		}
 		
 	}
 	
 	
 	
-	// ¿¹¾à ³¯Â¥ ¼±ÅÃ 
+	// ì˜ˆì•½ ë‚ ì§œ ì„ íƒ 
 	public void selectDate() {
 		
 		Scanner sc = new Scanner(System.in);
 		RentCarMenu Carmenu = new RentCarMenu();
 		
-		System.out.println("ÀÎ¼ö ³¯Â¥¸¦ ÀÔ·ÂÇÏ¼¼¿ä : (¿¹ 20220809)");
+		System.out.println("ì¸ìˆ˜ ë‚ ì§œë¥¼ ì…ë ¥í•˜ì„¸ìš” : (ì˜ˆ 20220809)");
 		String str = sc.next();
 		sc.nextLine();
 		
@@ -76,16 +76,16 @@ public class RentCarController {
 	
 		
 		// =============================================
-		// ÀÎ¼ö ³¯Â¥ Á¶È¸¸¦ ÇÑ°ÍÀ» ´Ù¸¥ ÃÖÁ¾ ¸®½ºÆ®¿¡ ÀúÀå.
+		// ì¸ìˆ˜ ë‚ ì§œ ì¡°íšŒë¥¼ í•œê²ƒì„ ë‹¤ë¥¸ ìµœì¢… ë¦¬ìŠ¤íŠ¸ì— ì €ì¥.
 		//if (Final_appointment_Rentcar_list != null) {
 		Final_appointment_Rentcar_list = List_book_date.book_date(ca_list);	
 		//}
 		// =============================================
 		
-		if(!ca_list.isEmpty()) {// ¸®½ºÆ®°´Ã¼¸¦ ÀÌ¹Ì ¸¸µé¾ú±â¶§¹®¿¡ null ÀÌµÉ¼ö ¾ø°í ºñ¿öÁ®ÀÖ´ÂÁö·Î ±¸ºĞ
+		if(!ca_list.isEmpty()) {// ë¦¬ìŠ¤íŠ¸ê°ì²´ë¥¼ ì´ë¯¸ ë§Œë“¤ì—ˆê¸°ë•Œë¬¸ì— null ì´ë ìˆ˜ ì—†ê³  ë¹„ì›Œì ¸ìˆëŠ”ì§€ë¡œ êµ¬ë¶„
 			Carmenu.displayRentCarList(ca_list);
 		}else {
-			Carmenu.displayError("ÇØ´çµÇ´Â µ¥ÀÌÅÍ°¡ ¾ø½À´Ï´Ù.");
+			Carmenu.displayError("í•´ë‹¹ë˜ëŠ” ë°ì´í„°ê°€ ì—†ìŠµë‹ˆë‹¤.");
 		}
 	}
 	
@@ -95,7 +95,7 @@ public class RentCarController {
 		Scanner sc = new Scanner(System.in);
 		RentCarMenu Carmenu = new RentCarMenu();
 		
-		System.out.println("ÀÎ¼ö ½Ã°£À» ÀÔ·ÂÇÏ¼¼¿ä : (¿¹ 8AM -> 8, 2pm -> 14)");
+		System.out.println("ì¸ìˆ˜ ì‹œê°„ì„ ì…ë ¥í•˜ì„¸ìš” : (ì˜ˆ 8AM -> 8, 2pm -> 14)");
 		String str = sc.next();
 		sc.nextLine();
 		
@@ -109,7 +109,7 @@ public class RentCarController {
 		
 		
 		// ============================================
-		// ÀÎ¼ö ³¯Â¥ Á¶È¸ ÇÑ°ÍÀ» ´Ù½Ã ÀÎ¼ö ½Ã°£À¸·Î Á¶È¸¸¦ ÇÏ°í ÃÖÁ¾¸®½ºÆ®¿¡ ÀúÀå
+		// ì¸ìˆ˜ ë‚ ì§œ ì¡°íšŒ í•œê²ƒì„ ë‹¤ì‹œ ì¸ìˆ˜ ì‹œê°„ìœ¼ë¡œ ì¡°íšŒë¥¼ í•˜ê³  ìµœì¢…ë¦¬ìŠ¤íŠ¸ì— ì €ì¥
 		
 		if (Final_appointment_Rentcar_list != null) {
 			
@@ -119,10 +119,10 @@ public class RentCarController {
 		// ============================================
 		
 		
-		if(!ca_list.isEmpty()) {// ¸®½ºÆ®°´Ã¼¸¦ ÀÌ¹Ì ¸¸µé¾ú±â¶§¹®¿¡ null ÀÌµÉ¼ö ¾ø°í ºñ¿öÁ®ÀÖ´ÂÁö·Î ±¸ºĞ
+		if(!ca_list.isEmpty()) {// ë¦¬ìŠ¤íŠ¸ê°ì²´ë¥¼ ì´ë¯¸ ë§Œë“¤ì—ˆê¸°ë•Œë¬¸ì— null ì´ë ìˆ˜ ì—†ê³  ë¹„ì›Œì ¸ìˆëŠ”ì§€ë¡œ êµ¬ë¶„
 			Carmenu.displayRentCarList(ca_list);
 		}else {
-			Carmenu.displayError("ÇØ´çµÇ´Â µ¥ÀÌÅÍ°¡ ¾ø½À´Ï´Ù.");
+			Carmenu.displayError("í•´ë‹¹ë˜ëŠ” ë°ì´í„°ê°€ ì—†ìŠµë‹ˆë‹¤.");
 		}
 		
 	}
@@ -135,10 +135,10 @@ public class RentCarController {
 		
 		ArrayList<RentCarDto> list = RentcarService.selectAll();
 		
-		if(!list.isEmpty()) {// ¸®½ºÆ®°´Ã¼¸¦ ÀÌ¹Ì ¸¸µé¾ú±â¶§¹®¿¡ null ÀÌµÉ¼ö ¾ø°í ºñ¿öÁ®ÀÖ´ÂÁö·Î ±¸ºĞ
+		if(!list.isEmpty()) {// ë¦¬ìŠ¤íŠ¸ê°ì²´ë¥¼ ì´ë¯¸ ë§Œë“¤ì—ˆê¸°ë•Œë¬¸ì— null ì´ë ìˆ˜ ì—†ê³  ë¹„ì›Œì ¸ìˆëŠ”ì§€ë¡œ êµ¬ë¶„
 			Carmenu.displayRentCarList(list);
 		}else {
-			Carmenu.displayError("ÇØ´çµÇ´Â µ¥ÀÌÅÍ°¡ ¾ø½À´Ï´Ù.");
+			Carmenu.displayError("í•´ë‹¹ë˜ëŠ” ë°ì´í„°ê°€ ì—†ìŠµë‹ˆë‹¤.");
 		}
 		
 	}
@@ -149,7 +149,7 @@ public class RentCarController {
 		Scanner sc = new Scanner(System.in);
 		RentCarMenu Carmenu = new RentCarMenu();
 		
-		System.out.println("Â÷ Á¾À» ¼±ÅÃÇÏ¼¼¿ä (¼ÒÇü, ÁßÇü, SUV) : ");
+		System.out.println("ì°¨ ì¢…ì„ ì„ íƒí•˜ì„¸ìš” (ì†Œí˜•, ì¤‘í˜•, SUV) : ");
 		String str = sc.next();
 		sc.nextLine();
 		
@@ -159,7 +159,7 @@ public class RentCarController {
 		//Carmenu.displayfinRentCar(list);
 		
 		// =============================================
-		// ÀÎ¼ö ³¯Â¥,½Ã°£ Á¶È¸¸¦ ÇÑ°ÍÀ» Â÷Á¾À» ¼±ÅÃÇØ¼­ ÃÖÁ¾ ¸®½ºÆ®¿¡ ÀúÀå 
+		// ì¸ìˆ˜ ë‚ ì§œ,ì‹œê°„ ì¡°íšŒë¥¼ í•œê²ƒì„ ì°¨ì¢…ì„ ì„ íƒí•´ì„œ ìµœì¢… ë¦¬ìŠ¤íŠ¸ì— ì €ì¥ 
 		if (Final_appointment_Rentcar_list != null) {
 			
 			Final_appointment_Rentcar_list = List_book_date.book_Carsection(Final_appointment_Rentcar_list);
@@ -167,10 +167,10 @@ public class RentCarController {
 		
 		// =============================================
 		
-		if(!list.isEmpty()) {// ¸®½ºÆ®°´Ã¼¸¦ ÀÌ¹Ì ¸¸µé¾ú±â¶§¹®¿¡ null ÀÌµÉ¼ö ¾ø°í ºñ¿öÁ®ÀÖ´ÂÁö·Î ±¸ºĞ
+		if(!list.isEmpty()) {// ë¦¬ìŠ¤íŠ¸ê°ì²´ë¥¼ ì´ë¯¸ ë§Œë“¤ì—ˆê¸°ë•Œë¬¸ì— null ì´ë ìˆ˜ ì—†ê³  ë¹„ì›Œì ¸ìˆëŠ”ì§€ë¡œ êµ¬ë¶„
 			Carmenu.displayRentCarList(list);
 		}else {
-			Carmenu.displayError("ÇØ´çµÇ´Â µ¥ÀÌÅÍ°¡ ¾ø½À´Ï´Ù.");
+			Carmenu.displayError("í•´ë‹¹ë˜ëŠ” ë°ì´í„°ê°€ ì—†ìŠµë‹ˆë‹¤.");
 		}
 		
 	}
@@ -185,7 +185,7 @@ public class RentCarController {
 		if(m != null) {
 			Carmenu.displayMember(m);
 		}else {
-			Carmenu.displayError(inputMemberId + " ÇØ´çµÇ´Â µ¥ÀÌÅÍ°¡ ¾ø½À´Ï´Ù.");
+			Carmenu.displayError(inputMemberId + " í•´ë‹¹ë˜ëŠ” ë°ì´í„°ê°€ ì—†ìŠµë‹ˆë‹¤.");
 		}
 		
 	}
@@ -196,10 +196,10 @@ public class RentCarController {
 		
 		List<RentCarDto> list = RentcarService.selectByName(inputMemberName);
 		
-		if(!list.isEmpty()) {// ¸®½ºÆ®°´Ã¼¸¦ ÀÌ¹Ì ¸¸µé¾ú±â¶§¹®¿¡ null ÀÌµÉ¼ö ¾ø°í ºñ¿öÁ®ÀÖ´ÂÁö·Î ±¸ºĞ
+		if(!list.isEmpty()) {// ë¦¬ìŠ¤íŠ¸ê°ì²´ë¥¼ ì´ë¯¸ ë§Œë“¤ì—ˆê¸°ë•Œë¬¸ì— null ì´ë ìˆ˜ ì—†ê³  ë¹„ì›Œì ¸ìˆëŠ”ì§€ë¡œ êµ¬ë¶„
 			menu.displayRentCarList(list);
 		}else {
-			menu.displayError("ÇØ´çµÇ´Â µ¥ÀÌÅÍ°¡ ¾ø½À´Ï´Ù.");
+			menu.displayError("í•´ë‹¹ë˜ëŠ” ë°ì´í„°ê°€ ì—†ìŠµë‹ˆë‹¤.");
 		}
 		
 	}
@@ -210,9 +210,9 @@ public class RentCarController {
 		
 		if(result > 0 ) {
 			
-			new RentCarMenu().displaySuccess("È¸¿ø°¡ÀÔ¼º°ø");
+			new RentCarMenu().displaySuccess("íšŒì›ê°€ì…ì„±ê³µ");
 		}else {
-			new RentCarMenu().displayError("È¸¿ø°¡ÀÔ½ÇÆĞ");
+			new RentCarMenu().displayError("íšŒì›ê°€ì…ì‹¤íŒ¨");
 		}
 		
 	}
@@ -223,9 +223,9 @@ public class RentCarController {
 		
 		
 		if(result > 0 ) {	
-			new RentCarMenu().displaySuccess("·»Æ®Ä« Á¤º¸ ¼öÁ¤ ¼º°ø");
+			new RentCarMenu().displaySuccess("ë ŒíŠ¸ì¹´ ì •ë³´ ìˆ˜ì • ì„±ê³µ");
 		}else {
-			new RentCarMenu().displayError("·»Æ®Ä« Á¤º¸ ¼öÁ¤ ½ÇÆĞ");
+			new RentCarMenu().displayError("ë ŒíŠ¸ì¹´ ì •ë³´ ìˆ˜ì • ì‹¤íŒ¨");
 		}
 		
 	}
@@ -234,9 +234,9 @@ public class RentCarController {
 		int result = RentcarService.deleteMember(inputMemberId);
 		
 		if(result > 0 ) {
-			new RentCarMenu().displaySuccess("È¸¿ø»èÁ¦¼º°ø");
+			new RentCarMenu().displaySuccess("íšŒì›ì‚­ì œì„±ê³µ");
 		}else {
-			new RentCarMenu().displayError("È¸¿ø»èÁ¦½ÇÆĞ");
+			new RentCarMenu().displayError("íšŒì›ì‚­ì œì‹¤íŒ¨");
 		}
 		
 	}
