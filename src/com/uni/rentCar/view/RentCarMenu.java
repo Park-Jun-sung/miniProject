@@ -13,8 +13,7 @@ public class RentCarMenu {
 	private static Scanner sc = new Scanner(System.in);
 	private RentCarController RentCarController = new RentCarController();
 	
-	//테스트
-	//public ArrayList<RentCarDto> Final_reservation_car = new ArrayList<RentCarDto>();
+	public RentCarDto dto = new RentCarDto();
 	
 	public void RentCarMenu() {
 		
@@ -28,6 +27,8 @@ public class RentCarMenu {
 			System.out.println("3. 렌트카 인수 시간 ");
 			System.out.println("4. 렌트카 반납 일자 시간 ");
 			System.out.println("5. 렌트카 차종 조회 (소형,중형,대형) ");
+			System.out.println("6. 최종 예약 조회 ");
+			System.out.println("7. 예약 결정 ");
 			System.out.println("9. 프로그램 종료");
 			
 			System.out.println("메뉴 번호를 입력하세요 : ");
@@ -50,6 +51,12 @@ public class RentCarMenu {
 			case 5:
 				RentCarController.selectCarSection();
 				break;
+			case 6:
+				RentCarController.ReservationCar();
+				break;
+			case 7:
+				RentCarController.InsertReserTable();
+				break;
 			case 9:
 				
 				System.out.println("정말로 끝내시겠습니까??(y/n)");
@@ -65,63 +72,6 @@ public class RentCarMenu {
 			
 			
 		}
-		
-		
-		
-
-//		do {
-//			
-//			System.out.println("\n============ 렌터카 예약 프로그램  ==============");
-//			System.out.println("1. 인수 일자 조회");
-//			System.out.println("2. 인수 시간 조회 (8:00 ~ 20:00 2시간 마다)");
-//			System.out.println("3. 반납 일자 조회" + "(udpate로 자바에서 시간을 받는다)");
-//			System.out.println("4. 반납 시간 조회" + "(반납일자랑 이하 동문)");
-//			
-//			
-//			/*System.out.println("1.회원 전체 조회");// SELECT
-//			System.out.println("2.회원 아이디 조회");// SELECT
-//			System.out.println("3.회원 이름 조회");// SELECT
-//			System.out.println("4.회원 가입");// INSERT
-//			System.out.println("5.회원 정보 변경");// UPDATE
-//			System.out.println("6.회원 탈퇴");// DELETE
-//			System.out.println("9.프로그램 끝내기");// 종료
-//			System.out.println("번호선택 : ");*/
-//
-//			choice = sc.nextInt();
-//
-//			switch (choice) {
-//			case 1:
-//				memberController.selectAll();
-//				break;
-//			case 2:
-//				memberController.selectOne(inputMemberId());
-//				break;
-//			case 3:
-//				memberController.selectByName(inputMemberName());
-//				break;
-//			case 4:
-//				//memberController.insertMember(inputMember());
-//				break;
-//			case 5:
-//				//memberController.updateMember(updateMember());
-//				break;
-//			case 6:
-//				memberController.deleteMember(inputMemberId());
-//				break;
-//			case 9:
-//				System.out.println("정말로 끝내시겠습니까??(y/n)");
-//				if ('y' == sc.next().toLowerCase().charAt(0)) {
-//					memberController.exitProgram();
-//					return;
-//				}
-//
-//				break;
-//
-//			default:
-//				System.out.println("번호를 잘못입력하였습니다.");
-//			}
-//
-//		} while (true);
 	}
 
 	private RentCarDto updateMember() {
@@ -219,28 +169,27 @@ public class RentCarMenu {
 	
 	// ======================= 마지막 리스트 출력하기 ====================
 	
-	public void displayfinRentCar(ArrayList<RentCarDto> finRentCar) {
+	public void displayfinRentCar(RentCarDto rentcar) {
 		
 		
-		// 최종 예약된 렌트카 출력 
-		System.out.println("==================================== 최종 예약된 렌트카=========================================");
-		for(int i = 0; i < finRentCar.size(); ++i) {
-			
-			System.out.println(finRentCar.get(i));
-		}
-		
-		
-		
-		// 최종 예약된 렌트카를 Final_reservation_car에 넣는다.
-		for(int i = 0; i < finRentCar.size(); ++i) {
-			
-			//Final_reservation_car.set(i, finRentCar.get(i));
-		}
+		System.out.println("\n렌트번호\t차량번호\t차종\t  인수일자\t\t인수시간"
+				+ "\t\t반납일자\t\t반납시간\t    대여기간\t가격\t 분류\t 연료\t 정원\t 연식");
+		System.out.println("------------------------------------------------------------------------------------------------------------------------------------");
+		System.out.println(rentcar.getRentcar_no()
+						 + "    " + rentcar.getCar_no()
+						 + "    " + rentcar.getRentcar_model()
+						 + "    " + rentcar.getRentcar_date()
+						 + "    " + rentcar.getRentcar_datetime()
+						 + "    " + rentcar.getRentcar_enddate()
+						 + "    " + rentcar.getRentcar_endtime()
+						 + "    " + rentcar.getRentcar_renttime()
+						 + "    " + rentcar.getRentcar_price()
+						 + "    " + rentcar.getRentcar_section()
+						 + "    " + rentcar.getRentcar_fuel()
+						 + "    " + rentcar.getRentcar_limit()
+						 + "    " + rentcar.getRentcar_time()
+						 );
 		
 	}
-	
-	
-	
-	
 	
 }

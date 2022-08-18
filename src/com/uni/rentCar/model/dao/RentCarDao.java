@@ -13,17 +13,57 @@ import com.uni.rentCar.model.dto.RentCarDto;
 
 public class RentCarDao {
 	
-		public ArrayList<RentCarDto> selectCar_Data(Connection conn, String Date) {
+	
+	public int InsertReserTable(Connection conn, RentCarDto cardto) {
 		
+		int result = 0;
 		
+		PreparedStatement pstmt = null;
 		
+//		String sql = "UPDATE booking SET "
+//				+ "booking_no = ?"
+//				+ "member_no = ?,"
+//				+ "pay_no = ?,"
+//				+ "flight_no = ?,"
+//				+ "spot_no = ?,"
+//				+ "rentcar_no = ?,"
+//				+ "stay_no = ?,"
+////				+ "booking_day = ?,"
+//				+ "booking_section = ?"
+//				+ "booking_people = ?";
+		
+		String sql = "INSERT INTO MEMBER VALUES (null, ?, null, null, null, ?, null, now(), 3, null)";
+		
+		try {
+			
+			// 멤버번호, 주문번호
+			// booking_day = sysdate;
+			// booking_section = 3;
+			pstmt = conn.prepareStatement(sql);
+			//pstmt.setInt(1, 1);	// member_no
+			pstmt.setInt(2, cardto.getRentcar_no());	// rentcar_no			
+			result = pstmt.executeUpdate();
+
+				
+		}  catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}finally {
+			close(pstmt);
+		}
+		
+		return result;
+		
+	}
+	
+	public ArrayList<RentCarDto> selectCar_Data(Connection conn, String Date) {
 		
 		//RentCarDto ca = null;
 		PreparedStatement pstmt = null;
 		ResultSet rset = null;// 
 		ArrayList<RentCarDto> list = null;
 		
-		String sql = "SELECT * FROM rentcar WHERE rentcar_date > ?";
+		String sql = "SELECT * FROM rentcar WHERE rentcar_date >= ?";
 		
 		try {
 			
@@ -186,9 +226,6 @@ public class RentCarDao {
 	
 	
 	public ArrayList<RentCarDto> selectCar_Data(Connection conn) {
-		
-		
-		
 		
 		ArrayList<RentCarDto> list = null;
 		

@@ -8,15 +8,45 @@ import com.uni.rentCar.model.dao.RentCarDao;
 import com.uni.rentCar.model.dto.RentCarDto;
 import static com.uni.common.JDBCTemplate.*;
 
+/**
+ * <pre>
+ * Class : 클래스의 이름
+ * Comment : 클래스에 대한 설명
+ * History
+ * 2020/09/08 (작성자) 처음 작성함
+ * </pre>
+ * @author 작성자
+ * @version 1.0.0
+ * @see 참고할 class나 외부 url
+ * */
 public class RentCarService {
 
 	private RentCarDao rentcarDao = new RentCarDao();
+	
+	public int InsertReserTable(RentCarDto cardto) {
+		
+		Connection conn = getConnection();
+		
+		int ca = rentcarDao.InsertReserTable(conn, cardto);
+		
+		if(ca > 0 ) {
+			commit(conn);
+		}else {
+			rollback(conn);
+		}
+		
+		return ca;
+		
+	}
+	
+	
+	
 	
 	public int UpdatereturnDate(String car_no, String udpatereturndate, String updatereturnsecond ) {
 		
 		Connection conn = getConnection();
 		
-		// �� ��ȣ, �ݳ� ��¥ �Ű�������
+		
 		// int ca = rentcarDao.UpdatereturnDate(conn, car_no, udpatereturndate);
 		int ca = rentcarDao.UpdatereturnDate(conn, "1001", udpatereturndate, updatereturnsecond);
 		
@@ -29,6 +59,15 @@ public class RentCarService {
 	}
 	
 	
+	/**
+	 * <pre>
+	 * 
+	 * </pre>
+	 * @param 매개변수명 매개변수에 대한 설명
+	 * @param 매개변수명 매개변수에 대한 설명
+	 * @return return값에 대한 설명
+	 * @exception 예외 이유에 대한 설명
+	 */
 	public ArrayList<RentCarDto> selectDate(String str) {
 		
 		Connection conn = getConnection();
@@ -64,7 +103,7 @@ public class RentCarService {
 		return list;
 	}
 	
-	// �ڵ��� ���� ���� 
+	// �ڵ��� ���� ���� 
 	public  ArrayList<RentCarDto> selectsection(String inputCarSection) {
 		
 		Connection conn = getConnection();

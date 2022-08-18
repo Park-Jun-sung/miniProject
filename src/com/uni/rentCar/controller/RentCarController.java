@@ -18,8 +18,51 @@ public class RentCarController {
 	// StackOverflow가 남
 	//public RentCarMenu Carmenu = new RentCarMenu();
 	
+	int max_size = 100;
+	
 	fin_List List_book_date = new fin_List();
-	public ArrayList<RentCarDto> Final_appointment_Rentcar_list = new ArrayList<RentCarDto>();
+	public ArrayList<RentCarDto> Final_appointment_Rentcar_list = new ArrayList<RentCarDto>(max_size);
+	
+	
+	public void InsertReserTable() {
+		
+		System.out.println("예약 하시겠습니까? (y/n)");
+		Scanner sc = new Scanner(System.in);
+		String str = sc.next();
+		sc.nextLine();
+		
+		RentCarMenu Carmenu = new RentCarMenu();
+		
+		if (str.equals("y") || str.equals("Y")) {
+			
+			int result_reser = RentcarService.InsertReserTable(Carmenu.dto);
+			
+			if(result_reser > 0 ) {	
+				new RentCarMenu().displaySuccess("렌트카 예약 성공");
+			}else {
+				new RentCarMenu().displayError("렌트카 예약 실패");
+			}
+			
+			
+		} else {
+			
+			System.out.println("예약이 취소되었습니다.");
+		}
+		
+	}
+	
+	
+	// 나만의 예약 테이블에 정보를 기입 
+	public void ReservationCar() {
+		
+		RentCarMenu Carmenu = new RentCarMenu();
+		
+		//List_book_date.book_fin(Final_appointment_Rentcar_list);
+		
+		Carmenu.displayfinRentCar(List_book_date.book_fin(Final_appointment_Rentcar_list));
+		
+	}
+	
 	
 	public void UpdatereturnDate() {
 		
@@ -101,7 +144,7 @@ public class RentCarController {
 		
 		
 		StrTime str_time = new StrTime();
-		
+		// Selec_time = 12:00
 		String Selec_time = str_time.str_time(str);
 		
 		ArrayList<RentCarDto> ca_list = RentcarService.selectTime(Selec_time);
@@ -115,6 +158,11 @@ public class RentCarController {
 			
 			Final_appointment_Rentcar_list = List_book_date.book_time(Final_appointment_Rentcar_list, Selec_time);
 			
+			if(!Final_appointment_Rentcar_list.isEmpty()) {// 리스트객체를 이미 만들었기때문에 null 이될수 없고 비워져있는지로 구분
+				Carmenu.displayRentCarList(Final_appointment_Rentcar_list);
+			}else {
+				Carmenu.displayError("해당되는 데이터가 없습니다.");
+			}
 		}
 		// ============================================
 		
@@ -162,8 +210,19 @@ public class RentCarController {
 		// 인수 날짜,시간 조회를 한것을 차종을 선택해서 최종 리스트에 저장 
 		if (Final_appointment_Rentcar_list != null) {
 			
-			Final_appointment_Rentcar_list = List_book_date.book_Carsection(Final_appointment_Rentcar_list);
+			Final_appointment_Rentcar_list = List_book_date.book_Carsection(Final_appointment_Rentcar_list, str);
+			
+			// ######################## 최종 예약 객체 ####################
+			if(!Final_appointment_Rentcar_list.isEmpty()) {// 리스트객체를 이미 만들었기때문에 null 이될수 없고 비워져있는지로 구분
+				Carmenu.displayRentCarList(Final_appointment_Rentcar_list);
+			}else {
+				Carmenu.displayError("해당되는 데이터가 없습니다.");
+			}
+			
 		}
+		
+		
+
 		
 		// =============================================
 		
