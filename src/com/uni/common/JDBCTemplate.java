@@ -1,51 +1,78 @@
 package com.uni.common;
 
-import java.io.FileReader;
-import java.io.IOException;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
-import java.util.Properties;
 
 public class JDBCTemplate {
-	
+
+	private static Connection conn = null;
+
 	public static Connection getConnection() {
 		
-		Connection con = null;
-		
-		Properties prop = new Properties();
-		try {
-			prop.load(new FileReader("config/connection-info.properties"));
-//			String driver = prop.getProperty("driver");
-			String url = prop.getProperty("url");
+		if (conn == null) {
+
+			try {
+				
+				Class.forName("com.mysql.cj.jdbc.Driver");
+				conn = DriverManager.getConnection("jdbc:mysql://3.34.17.94:55939/mini", "mini1234", "mini1234");
+
+				conn.setAutoCommit(false);
 			
-//			Class.forName(driver);
 			
-			con = DriverManager.getConnection(url, prop);
-			
-			/* autoCommit �꽕�젙 蹂�寃� */
-			con.setAutoCommit(false);
-			
-		} catch (IOException e) {
-			e.printStackTrace();
-		} catch (SQLException e) {
-			e.printStackTrace();
+			} catch (ClassNotFoundException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+
 		}
-		
-		return con;
+
+		return conn;
 	}
-	
-	public static void close(Connection con) {
+
+	public static void close(Connection conn) {
+
 		try {
-			if(con != null && !con.isClosed()) {
-				con.close();
+			if (conn != null && !conn.isClosed()) {
+				conn.close();
 			}
 		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
+	}
+
+	
+	public static void commit(Connection conn) {
+		
+		try {
+			if(conn != null && !conn.isClosed()) {
+				conn.commit();
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 	}
+	
+	public static void rollback(Connection conn) {
+		
+		try {
+			if(conn != null && !conn.isClosed()) {
+				conn.rollback();
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+	
 	
 	public static void close(Statement stmt) {
 		try {
@@ -53,38 +80,24 @@ public class JDBCTemplate {
 				stmt.close();
 			}
 		} catch (SQLException e) {
+			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 	}
+	
 	
 	public static void close(ResultSet rset) {
 		try {
+			
 			if(rset != null && !rset.isClosed()) {
 				rset.close();
 			}
+			
 		} catch (SQLException e) {
+			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 	}
 	
-	public static void commit(Connection con) {
-		try {
-			if(con != null && !con.isClosed()) {
-				con.commit();
-			}
-		} catch (SQLException e) {
-			e.printStackTrace();
-		}
-	}
-	
-	public static void rollback(Connection con) {
-		try {
-			if(con != null && !con.isClosed()) {
-				con.rollback();
-			}
-		} catch (SQLException e) {
-			e.printStackTrace();
-		}
-	}
 	
 }
