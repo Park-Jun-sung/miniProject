@@ -11,10 +11,8 @@ public class Application {
 		
 		new StayMenu().areaMenu();
 		
-//		Connection conn = JDBCTemplate.getConnection();
 	
-//		new StayMenu().dayChoice();
-		
+
 	}
 
 }
