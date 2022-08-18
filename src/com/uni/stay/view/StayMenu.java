@@ -8,6 +8,7 @@ import java.util.Scanner;
 
 import com.uni.main.view.MainMenu;
 import com.uni.stay.controller.StayController;
+import com.uni.stay.model.dto.Booking;
 import com.uni.stay.model.dto.BookingStay;
 import com.uni.stay.model.dto.Stay;
 
@@ -28,6 +29,7 @@ public class StayMenu {
 	
 	private StayController stayController = new StayController();
 	private BookingStay bookingStay = new BookingStay();
+	private static Booking booking = new Booking();
 	private String[] date;
 	private static String year;
 	private static String month;
@@ -45,6 +47,7 @@ public class StayMenu {
 			System.out.println("2.서귀포시");
 			System.out.println("0.이전 화면");
 			System.out.println("번호선택 : ");
+			
 			
 			areaChoice = sc.nextInt();
 			
@@ -97,21 +100,25 @@ public class StayMenu {
 			case 1: 
 				code = 1;
 				bookingStay.setStayCode(1);
+				booking.setStayCode(1);
 				dayMenu();
 				break;
 			case 2: 
 				code = 2;
 				bookingStay.setStayCode(2);
+				booking.setStayCode(2);
 				dayMenu();
 				break;
 			case 3: 
 				code = 3;
 				bookingStay.setStayCode(3);
+				booking.setStayCode(3);
 				dayMenu();
 				break;
 			case 4: 
 				code = 4;
 				bookingStay.setStayCode(4);
+				booking.setStayCode(4);
 				dayMenu();
 				break;
 			case 0:
@@ -164,26 +171,34 @@ public class StayMenu {
 		System.out.println("입실 일자를 입력해 주세요 ( '-'구분자로 년도월일 입력, ex)2022-01-01 ): ");
 		String bookingDate = sc.nextLine();
 		
-		date = bookingDate.split("-");
-		year = date[0];
-		month = date[1];
-		day = date[2];
-		
-		int temp = Integer.parseInt(day);
-		temp++; //날짜를 1일 추가
-		
-		tomorrow = Integer.toString(temp);
-		
-		SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
-		
-		Date transDate = null;
-		try {
-			transDate = formatter.parse(bookingDate);
-		} catch (ParseException e) {
-			e.printStackTrace();
+		if(bookingDate.matches("^\\d{4}-\\d{2}-\\d{2}$")) {
+			
+			date = bookingDate.split("-");
+			year = date[0];
+			month = date[1];
+			day = date[2];
+			
+			int temp = Integer.parseInt(day);
+			temp++; //날짜를 1일 추가
+			
+			tomorrow = Integer.toString(temp);
+			
+			SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
+			
+			Date transDate = null;
+			try {
+				transDate = formatter.parse(bookingDate);
+			} catch (ParseException e) {
+				e.printStackTrace();
+			}
+			
+			bookingStay.setStayDay(transDate);
+			booking.setStayDay(transDate);
+		}else {
+			System.out.println("입력값을 확인해주세요.");
+			dayMenu();
 		}
 		
-		bookingStay.setStayDay(transDate);
 		
 		
 //		System.out.println(transDate);
@@ -268,12 +283,27 @@ public class StayMenu {
 		stayController.selectByBookingConfirmInfo(bookingStay.getStayArea(), bookingStay.getStayCode()
 				,bookingStay.getStayDay() , bookingStay.getStayName());
 		
+		bookingStay(booking);
+		
 		System.out.println("엔터를 눌러주시면 메뉴로 돌아갑니다.");
 		String menu = sc.nextLine();
 		mainMenu.mainMenu();
 		
 	}
-
+	
+	private void bookingStay(Booking booking) {
+		
+		stayController.insertBookingStay(booking);
+		
+	}
+	
+	private void bookingChange() {
+		
+//		stayController.updateStay();
+		
+		
+	}
+	
 	public void displayStayNameList(List<Stay> s2) {
 		System.out.println();
 		System.out.println("다음은 숙소 목록 입니다");
@@ -306,11 +336,11 @@ public class StayMenu {
 		System.out.println("==========예약 정보==========");
 		System.out.println();
 		
-		System.out.println("숙소명 : " + s2.get(0));
-		System.out.println("주소 : " + s2.get(1));
+		System.out.println("숙소명 : " + s2.get(1));
+		System.out.println("주소 : " + s2.get(2));
 		System.out.println("Check In : " + year + "년 " + month + "월 " + day + "일 15시00분 이후");
 		System.out.println("Check Out : " + year + "년 " + month + "월 " + tomorrow + "일 11시00분 이전");
-		System.out.println("금액 : " + s2.get(2) + "원");
+		System.out.println("금액 : " + s2.get(3) + "원");
 	
 		System.out.println();
 		
@@ -322,12 +352,34 @@ public class StayMenu {
 		System.out.println("==========예약 완료==========");
 		System.out.println();
 		
-		System.out.println("숙소명 : " + s2.get(0));
-		System.out.println("주소 : " + s2.get(1));
+		System.out.println("숙소명 : " + s2.get(1));
+		System.out.println("주소 : " + s2.get(2));
 		System.out.println("Check In : " + year + "년 " + month + "월 " + day + "일 15시00분 이후");
 		System.out.println("Check Out : " + year + "년 " + month + "월 " + tomorrow + "일 11시00분 이전");
-		System.out.println("금액 : " + s2.get(2) + "원");
+		System.out.println("금액 : " + s2.get(3) + "원");
 		System.out.println();
+//		System.out.println("숙소가 예약되었습니다.");
+		
+//		private int bookingNo;
+		
+//		booking.setBookingDay(transDate);
+//		booking.setStayCode(stayCode);
+//		booking.setStayDay(transDate);
+		
+		booking.setMemberNo(MainMenu.member.getMember_no());
+		booking.setBookingSection(4);
+		booking.setStayNo(s2.get(0));
+		booking.setStayArea(s2.get(2));
+		booking.setStayName(s2.get(1));
+		booking.setPrice(s2.get(3).toString());
+		
+		System.out.println(booking.getMemberNo());
+		System.out.println(booking.getStayNo());
+		System.out.println(booking.getBookingSection());
+		
+	}
+
+	public void displayBooking() {
 		System.out.println("숙소가 예약되었습니다.");
 	}
 

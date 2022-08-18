@@ -13,6 +13,7 @@ import java.util.Date;
 import java.util.List;
 import java.util.Properties;
 
+import com.uni.stay.model.dto.Booking;
 import com.uni.stay.model.dto.Stay;
 
 public class StayDao {
@@ -33,8 +34,8 @@ public class StayDao {
 	
 	public List<Stay> selectByNameList(Connection con, String stayArea, int stayCode) {
 		ArrayList<Stay> list = null;
-		PreparedStatement pstmt = null;// ½ÇÇàÇÒ Äõ¸®
-	    ResultSet rset = null;// Select ÇÑÈÄ °á°ú°ª ¹Ş¾Æ¿Ã °´Ã¼
+		PreparedStatement pstmt = null;// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
+	    ResultSet rset = null;// Select ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ş¾Æ¿ï¿½ ï¿½ï¿½Ã¼
 		
 		String sql = "SELECT * FROM stay WHERE stay_area LIKE ? AND stay_code = ?";
 		
@@ -78,8 +79,8 @@ public class StayDao {
 
 	public List<String> selectByStayInfo(Connection con, String stayName) {
 		ArrayList<String> list = null;
-		PreparedStatement pstmt = null;// ½ÇÇàÇÒ Äõ¸®
-	    ResultSet rset = null;// Select ÇÑÈÄ °á°ú°ª ¹Ş¾Æ¿Ã °´Ã¼
+		PreparedStatement pstmt = null;
+	    ResultSet rset = null;
 		
 		String sql = "SELECT * FROM stay WHERE stay_name LIKE ?";
 		
@@ -101,14 +102,16 @@ public class StayDao {
 //	            s.setStayName(rset.getString("stay_name"));
 //	            s.setStayDay(rset.getDate("stay_day"));
 //	            s.setPrice(rset.getInt("price"));
-	            
+	            int no = rset.getInt("stay_no");
+	            String temp = Integer.toString(no);
+	            list.add(temp);
 	            String name = rset.getString("stay_name");
 	            list.add(name);
 	            String area = rset.getString("stay_area");
 	            list.add(area);		
 	            int price = rset.getInt("price");
-	            String temp = Integer.toString(price);
-	            list.add(temp);
+	            String temp2 = Integer.toString(price);
+	            list.add(temp2);
 	         
 			}
 			
@@ -125,6 +128,50 @@ public class StayDao {
 		}
 		
 		return list;
+	}
+
+	public static int insertBookingStay(Connection con, Booking b) {
+		int result = 0;
+	      
+	      PreparedStatement pstmt = null;
+	      
+	      String sql = "INSERT INTO booking VALUES (null, ?, null, null, null, null, ?, now(), ?, null)";
+	      
+	      
+	      System.out.println(b.getMemberNo());
+	      System.out.println(b.getStayNo());
+	      System.out.println(b.getBookingSection());
+	      
+	      try {
+	         
+	         con.setAutoCommit(false);
+	         
+	         pstmt = con.prepareStatement(sql);
+			 pstmt.setInt(1, b.getMemberNo());
+	         pstmt.setInt(2, b.getStayNo());
+	         pstmt.setInt(3, b.getBookingSection());
+	         
+	         result = pstmt.executeUpdate();// ì²˜ë¦¬í•œ í–‰ì˜ ê°¯ìˆ˜ ë¦¬í„´ (int) , ì—ëŸ¬ -1
+
+	         if(result > 0) {
+	        	 con.commit();// ì ìš©
+	         }
+	         else {
+	        	 con.rollback();   // ë˜ëŒë¦¬ê¸°
+	         }
+	            
+	      } catch (SQLException e) {
+	         // TODO Auto-generated catch block
+	         e.printStackTrace();
+	      }finally {
+
+	          close(pstmt);
+	          close(con);
+	      }
+	      
+	      
+	      return result;
+
 	}
 
 }

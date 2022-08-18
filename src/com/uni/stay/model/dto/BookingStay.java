@@ -4,6 +4,7 @@ import java.util.Date;
 
 public class BookingStay {
 
+	private int stayNo;
 	private int stayCode;
 	private String stayArea;
 	private String stayName;
@@ -13,12 +14,23 @@ public class BookingStay {
 	public BookingStay() {
 	}
 
-	public BookingStay(int stayCode, String stayArea, String stayName, Date stayDay) {
+	public BookingStay(int stayNo, int stayCode, String stayArea, String stayName, Date stayDay) {
 		super();
+		this.stayNo = stayNo;
 		this.stayCode = stayCode;
 		this.stayArea = stayArea;
 		this.stayName = stayName;
 		this.stayDay = stayDay;
+	}
+
+	
+	
+	public int getStayNo() {
+		return stayNo;
+	}
+
+	public void setStayNo(int stayNo) {
+		this.stayNo = stayNo;
 	}
 
 	public int getStayCode() {

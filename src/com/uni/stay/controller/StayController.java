@@ -1,10 +1,9 @@
 package com.uni.stay.controller;
 
-import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
-import com.uni.stay.model.dto.BookingStay;
+import com.uni.stay.model.dto.Booking;
 import com.uni.stay.model.dto.Stay;
 import com.uni.stay.service.StayService;
 import com.uni.stay.view.StayMenu;
@@ -45,6 +44,18 @@ public class StayController {
 			menu.displayBookingConfirm(s);
 		} else {
 			menu.displayError("해당되는 데이터가 없습니다.");
+		}
+	}
+
+	public void insertBookingStay(Booking booking) {
+		StayMenu menu = new StayMenu();
+		int result = stayService.insertBookingStay(booking);
+//		List<BookingStay> bs2 = new ArrayList<BookingStay>();
+		
+		if(result > 0) {
+			menu.displayBooking();
+		} else {
+			menu.displayError("예약되지 않았습니다.");
 		}
 	}
 
