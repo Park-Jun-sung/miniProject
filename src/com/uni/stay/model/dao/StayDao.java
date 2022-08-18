@@ -16,42 +16,34 @@ import java.util.Properties;
 import com.uni.stay.model.dto.Booking;
 import com.uni.stay.model.dto.Stay;
 
+/**
+ * <pre>
+ * Class : StayDao
+ * Comment : DB에 쿼리를 날리고 데이터를 입력하는 클래스
+ * History
+ * 2022/08/16 (김성환) 처음 작성함
+ * </pre>
+ * @author 김성환
+ * @version 1.0.0
+ * @see 참고할 class나 외부 url
+ * */
 public class StayDao {
-	
-//	private Properties prop = null;
-//
-//	public StayDao() {
-//		
-//		prop = new Properties();
-//		try {
-//			prop.load(new FileReader("resources/query.properties"));
-//		} catch (IOException e) {
-//			// TODO Auto-generated catch block
-//			e.printStackTrace();
-//		}
-//		
-//	}
-	
 	public List<Stay> selectByNameList(Connection con, String stayArea, int stayCode) {
 		ArrayList<Stay> list = null;
-		PreparedStatement pstmt = null;// ������ ����
-	    ResultSet rset = null;// Select ���� ����� �޾ƿ� ��ü
+		PreparedStatement pstmt = null;
+	    ResultSet rset = null;
 		
 		String sql = "SELECT * FROM stay WHERE stay_area LIKE ? AND stay_code = ?";
-		
 		
 		try {
 			pstmt = con.prepareStatement(sql);
 			pstmt.setString(1, "%"+stayArea+"%");
 			pstmt.setInt(2, stayCode);
 			rset = pstmt.executeQuery();
-			
 			list = new ArrayList<Stay>();
 			
 			while (rset.next()) {
-
 	            Stay s = new Stay();
-	            
 	            s.setStayNo(rset.getInt("stay_no"));
 	            s.setStayCode(rset.getInt("stay_code"));
 	            s.setStayArea(rset.getString("stay_area"));
@@ -61,19 +53,12 @@ public class StayDao {
 	            
 	            list.add(s);
 	         }
-			
-			
-			
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		} finally {
-			
 			close(rset);
 			close(pstmt);
-			
 		}
-		
 		return list;
 	}
 
@@ -84,18 +69,14 @@ public class StayDao {
 		
 		String sql = "SELECT * FROM stay WHERE stay_name LIKE ?";
 		
-		
 		Stay s = new Stay();
 		try {
 			pstmt = con.prepareStatement(sql);
 			pstmt.setString(1, stayName);
 			rset = pstmt.executeQuery();
-			
 			list = new ArrayList<String>();
 			
 			while (rset.next()) {
-
-	            
 //	            s.setStayNo(rset.getInt("stay_no"));
 //	            s.setStayCode(rset.getInt("stay_code"));
 //	            s.setStayArea(rset.getString("stay_area"));
@@ -112,40 +93,25 @@ public class StayDao {
 	            int price = rset.getInt("price");
 	            String temp2 = Integer.toString(price);
 	            list.add(temp2);
-	         
 			}
-			
-			
-			
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		} finally {
-			
 			close(rset);
 			close(pstmt);
-			
 		}
-		
 		return list;
 	}
 
 	public static int insertBookingStay(Connection con, Booking b) {
 		int result = 0;
-	      
 	      PreparedStatement pstmt = null;
 	      
 	      String sql = "INSERT INTO booking VALUES (null, ?, null, null, null, null, ?, now(), ?, null)";
 	      
-	      
-	      System.out.println(b.getMemberNo());
-	      System.out.println(b.getStayNo());
-	      System.out.println(b.getBookingSection());
-	      
 	      try {
-	         
 	         con.setAutoCommit(false);
-	         
 	         pstmt = con.prepareStatement(sql);
 			 pstmt.setInt(1, b.getMemberNo());
 	         pstmt.setInt(2, b.getStayNo());
@@ -159,19 +125,12 @@ public class StayDao {
 	         else {
 	        	 con.rollback();   // 되돌리기
 	         }
-	            
 	      } catch (SQLException e) {
-	         // TODO Auto-generated catch block
 	         e.printStackTrace();
 	      }finally {
-
 	          close(pstmt);
 	          close(con);
 	      }
-	      
-	      
 	      return result;
-
 	}
-
 }

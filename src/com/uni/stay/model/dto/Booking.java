@@ -2,6 +2,17 @@ package com.uni.stay.model.dto;
 
 import java.util.Date;
 
+/**
+ * <pre>
+ * Class : Booking
+ * Comment : 예약 테이블에 예약데이터를 삽입하기위해 필요한 DTO
+ * History
+ * 2022/08/18 (김성환) 처음 작성함
+ * </pre>
+ * @author 김성환
+ * @version 1.0.0
+ * @see 참고할 class나 외부 url
+ * */
 public class Booking {
 
 	private int bookingNo;
