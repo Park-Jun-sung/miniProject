@@ -154,18 +154,14 @@ public class RentCarController {
 		//rentcardto.setRentcar_renttime(result_renttime);
 		
 		// 대여기간만큼 가격이 측정되게 함 
-		//int renttime_price = rentcardto.getRentcar_price() * result_renttime;
 		int renttime_price = RentCarMenu.dto.getRentcar_price() * result_renttime;
 		RentCarMenu.dto.setRentcar_price(renttime_price);
-		//rentcardto.setRentcar_price(renttime_price);
-		
 		// 반납 날짜 대입
 		RentCarMenu.dto.setRentcar_enddate(returndate(Return_date));
-		//rentcardto.setRentcar_enddate(returndate(Return_date));
-		
+	
 		// 반납 시간 대입 
 		RentCarMenu.dto.setRentcar_endtime(returntime(Return_second));
-		//rentcardto.setRentcar_endtime(returntime(Return_second));
+		
 		//======================================================
 		
 		Carmenu.displayfinRentCar(RentCarMenu.dto);
@@ -337,10 +333,11 @@ public class RentCarController {
 		
 	}
 	
+	/**
+	 * @param String str 스트링 날짜를 받는 매개변수
+	 * @return return da date의 타입을 리턴을 시킴
+	 */
 	public Date returndate(String str) {
-		
-		
-		System.out.println(str);
 		
 		SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
 		
@@ -349,15 +346,6 @@ public class RentCarController {
 		try {
 			
 			da = format.parse(str);
-			
-			System.out.println(da);
-			
-			SimpleDateFormat format2 = new SimpleDateFormat("yyyy-MM-dd");
-			
-			String str2 = format2.format(da);
-			
-			System.out.println("==============");
-			System.out.println(str2);
 			
 			return da;
 			
@@ -369,6 +357,10 @@ public class RentCarController {
 		return null;
 	}
 	
+	/**
+	 * @param String str 스트링 시간에 대한 매개변수
+	 * @return return da 시간에 date를 반환 한다.
+	 */
 	public Date returntime(String str) {
 		
 		String str2 = str + ":00";
