@@ -13,44 +13,37 @@ import java.util.Date;
 import java.util.List;
 import java.util.Properties;
 
+import com.uni.stay.model.dto.Booking;
 import com.uni.stay.model.dto.Stay;
 
+/**
+ * <pre>
+ * Class : StayDao
+ * Comment : DBì— ì¿¼ë¦¬ë¥¼ ë‚ ë¦¬ê³  ë°ì´í„°ë¥¼ ì…ë ¥í•˜ëŠ” í´ë˜ìŠ¤
+ * History
+ * 2022/08/16 (ê¹€ì„±í™˜) ì²˜ìŒ ì‘ì„±í•¨
+ * </pre>
+ * @author ê¹€ì„±í™˜
+ * @version 1.0.0
+ * @see ì°¸ê³ í•  classë‚˜ ì™¸ë¶€ url
+ * */
 public class StayDao {
-	
-//	private Properties prop = null;
-//
-//	public StayDao() {
-//		
-//		prop = new Properties();
-//		try {
-//			prop.load(new FileReader("resources/query.properties"));
-//		} catch (IOException e) {
-//			// TODO Auto-generated catch block
-//			e.printStackTrace();
-//		}
-//		
-//	}
-	
 	public List<Stay> selectByNameList(Connection con, String stayArea, int stayCode) {
 		ArrayList<Stay> list = null;
-		PreparedStatement pstmt = null;// ½ÇÇàÇÒ Äõ¸®
-	    ResultSet rset = null;// Select ÇÑÈÄ °á°ú°ª ¹Ş¾Æ¿Ã °´Ã¼
+		PreparedStatement pstmt = null;
+	    ResultSet rset = null;
 		
 		String sql = "SELECT * FROM stay WHERE stay_area LIKE ? AND stay_code = ?";
-		
 		
 		try {
 			pstmt = con.prepareStatement(sql);
 			pstmt.setString(1, "%"+stayArea+"%");
 			pstmt.setInt(2, stayCode);
 			rset = pstmt.executeQuery();
-			
 			list = new ArrayList<Stay>();
 			
 			while (rset.next()) {
-
 	            Stay s = new Stay();
-	            
 	            s.setStayNo(rset.getInt("stay_no"));
 	            s.setStayCode(rset.getInt("stay_code"));
 	            s.setStayArea(rset.getString("stay_area"));
@@ -60,71 +53,84 @@ public class StayDao {
 	            
 	            list.add(s);
 	         }
-			
-			
-			
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		} finally {
-			
 			close(rset);
 			close(pstmt);
-			
 		}
-		
 		return list;
 	}
 
 	public List<String> selectByStayInfo(Connection con, String stayName) {
 		ArrayList<String> list = null;
-		PreparedStatement pstmt = null;// ½ÇÇàÇÒ Äõ¸®
-	    ResultSet rset = null;// Select ÇÑÈÄ °á°ú°ª ¹Ş¾Æ¿Ã °´Ã¼
+		PreparedStatement pstmt = null;
+	    ResultSet rset = null;
 		
 		String sql = "SELECT * FROM stay WHERE stay_name LIKE ?";
-		
 		
 		Stay s = new Stay();
 		try {
 			pstmt = con.prepareStatement(sql);
 			pstmt.setString(1, stayName);
 			rset = pstmt.executeQuery();
-			
 			list = new ArrayList<String>();
 			
 			while (rset.next()) {
-
-	            
 //	            s.setStayNo(rset.getInt("stay_no"));
 //	            s.setStayCode(rset.getInt("stay_code"));
 //	            s.setStayArea(rset.getString("stay_area"));
 //	            s.setStayName(rset.getString("stay_name"));
 //	            s.setStayDay(rset.getDate("stay_day"));
 //	            s.setPrice(rset.getInt("price"));
-	            
+	            int no = rset.getInt("stay_no");
+	            String temp = Integer.toString(no);
+	            list.add(temp);
 	            String name = rset.getString("stay_name");
 	            list.add(name);
 	            String area = rset.getString("stay_area");
 	            list.add(area);		
 	            int price = rset.getInt("price");
-	            String temp = Integer.toString(price);
-	            list.add(temp);
-	         
+	            String temp2 = Integer.toString(price);
+	            list.add(temp2);
 			}
-			
-			
-			
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		} finally {
-			
 			close(rset);
 			close(pstmt);
-			
 		}
-		
 		return list;
 	}
 
+	public static int insertBookingStay(Connection con, Booking b) {
+		int result = 0;
+	      PreparedStatement pstmt = null;
+	      
+	      String sql = "INSERT INTO booking VALUES (null, ?, null, null, null, null, ?, now(), ?, null)";
+	      
+	      try {
+	         con.setAutoCommit(false);
+	         pstmt = con.prepareStatement(sql);
+			 pstmt.setInt(1, b.getMemberNo());
+	         pstmt.setInt(2, b.getStayNo());
+	         pstmt.setInt(3, b.getBookingSection());
+	         
+	         result = pstmt.executeUpdate();// ì²˜ë¦¬í•œ í–‰ì˜ ê°¯ìˆ˜ ë¦¬í„´ (int) , ì—ëŸ¬ -1
+
+	         if(result > 0) {
+	        	 con.commit();// ì ìš©
+	         }
+	         else {
+	        	 con.rollback();   // ë˜ëŒë¦¬ê¸°
+	         }
+	      } catch (SQLException e) {
+	         e.printStackTrace();
+	      }finally {
+	          close(pstmt);
+	          close(con);
+	      }
+	      return result;
+	}
 }
