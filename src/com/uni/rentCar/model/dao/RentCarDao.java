@@ -122,7 +122,7 @@ public class RentCarDao {
 		ResultSet rset = null;// 
 		ArrayList<RentCarDto> list = null;
 		
-		String sql = "SELECT * FROM rentcar WHERE rentcar_date >= ?";
+		String sql = "SELECT * FROM rentcar WHERE rentcar_date = ?";
 		
 		try {
 			

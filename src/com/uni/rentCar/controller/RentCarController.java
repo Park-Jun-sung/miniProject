@@ -96,8 +96,6 @@ public class RentCarController {
 	 */
 	public void ReservationCar() {
 		
-		//Carmenu = new RentCarMenu();
-		
 		Carmenu.displayfinRentCar(List_book_date.book_fin(Final_appointment_Rentcar_list));
 		
 	}
