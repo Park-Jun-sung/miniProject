@@ -28,7 +28,6 @@ public class StayController {
 	public void selectByStayInfo(String stayArea, int stayCode, Date stayDay, String stayName) {
 		StayMenu menu = new StayMenu();
 		List<String> s = stayService.selectByStayInfo(stayName);
-//		List<BookingStay> bs2 = new ArrayList<BookingStay>();
 		
 		if(s != null) {
 			menu.displayStayInfoList(s);
