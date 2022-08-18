@@ -16,22 +16,22 @@ public class RentCarDao {
 		public ArrayList<RentCarDto> selectCar_Data(Connection conn, String Date) {
 		
 		
-		// Date 타입으로 디비에 보내야 한다. (String으로 되는지 확인)
+		
 		
 		//RentCarDto ca = null;
 		PreparedStatement pstmt = null;
-		ResultSet rset = null;// SELECT 후 결과값 받아올객체
+		ResultSet rset = null;// 
 		ArrayList<RentCarDto> list = null;
 		
 		String sql = "SELECT * FROM rentcar WHERE rentcar_date > ?";
 		
 		try {
 			
-			// 형식 : YYYY-mm-dd 형식
+			
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setString(1, Date);
 			
-			//4.쿼리문을 전송, 실행한 결과를 resultset으로 받기
+			
 			
 			rset = pstmt.executeQuery();
 			
@@ -73,22 +73,22 @@ public class RentCarDao {
 		public ArrayList<RentCarDto> selectCar_Time(Connection conn, String Time) {
 			
 			
-			// Date 타입으로 디비에 보내야 한다. (String으로 되는지 확인)
+			
 			
 			//RentCarDto ca = null;
 			PreparedStatement pstmt = null;
-			ResultSet rset = null;// SELECT 후 결과값 받아올객체
+			ResultSet rset = null;// SELECT 
 			ArrayList<RentCarDto> list = null;
 			
 			String sql = "SELECT * FROM rentcar WHERE rentcar_datetime >= ?";
 			
 			try {
 				
-				// 형식 : YYYY-mm-dd 형식
+				
 				pstmt = conn.prepareStatement(sql);
 				pstmt.setString(1, Time);
 				
-				//4.쿼리문을 전송, 실행한 결과를 resultset으로 받기
+				
 				
 				rset = pstmt.executeQuery();
 				
@@ -130,22 +130,22 @@ public class RentCarDao {
 		public ArrayList<RentCarDto> selectsection (Connection conn, String inputCarSection) {
 			
 			
-			// Date 타입으로 디비에 보내야 한다. (String으로 되는지 확인)
+			
 			
 			//RentCarDto ca = null;
 			PreparedStatement pstmt = null;
-			ResultSet rset = null;// SELECT 후 결과값 받아올객체
+			ResultSet rset = null;
 			ArrayList<RentCarDto> list = null;
 			
 			String sql = "SELECT * FROM rentcar WHERE rentcar_section = ?";
 			
 			try {
 				
-				// 형식 : YYYY-mm-dd 형식
+				
 				pstmt = conn.prepareStatement(sql);
 				pstmt.setString(1, inputCarSection);
 				
-				//4.쿼리문을 전송, 실행한 결과를 resultset으로 받기
+				
 				
 				rset = pstmt.executeQuery();
 				
@@ -188,27 +188,27 @@ public class RentCarDao {
 	public ArrayList<RentCarDto> selectCar_Data(Connection conn) {
 		
 		
-		// Date 타입으로 디비에 보내야 한다. (String으로 되는지 확인)
+		
 		
 		ArrayList<RentCarDto> list = null;
 		
-		Statement stmt = null;// 쿼리문을 실행할 객체
-		ResultSet rset = null;// SELECT 후 결과값 받아올객체
+		Statement stmt = null;// 
+		ResultSet rset = null;// SELECT 
 		
-		String sql = "SELECT * FROM rentcar";// 자동으로 세미콜론 붙여서 실행됨
+		String sql = "SELECT * FROM rentcar";
 		
 		try {
 			
-			//3.쿼리문을 실행할 statement 객체 생성 
+			
 			
 			stmt = conn.createStatement();
 			
-			//4.쿼리문을 전송, 실행한 결과를 resultset으로 받기
+			
 			
 			rset = stmt.executeQuery(sql);
 			
 			
-			//5. 받은 결과값을 객체에 옮겨서 저장하기 
+			
 			list = new ArrayList<RentCarDto>();
 			/*
 			 * USERID
@@ -267,23 +267,23 @@ public class RentCarDao {
 		
 		ArrayList<RentCarDto> list = null;
 		
-		Statement stmt = null;// 쿼리문을 실행할 객체
-		ResultSet rset = null;// SELECT 후 결과값 받아올객체
+		Statement stmt = null;//
+		ResultSet rset = null;// 
 		
-		String sql = "SELECT * FROM rentcar";// 자동으로 세미콜론 붙여서 실행됨
+		String sql = "SELECT * FROM rentcar";
 		
 		try {
 			
-			//3.쿼리문을 실행할 statement 객체 생성 
+			
 			
 			stmt = conn.createStatement();
 			
-			//4.쿼리문을 전송, 실행한 결과를 resultset으로 받기
+			
 			
 			rset = stmt.executeQuery(sql);
 			
 			
-			//5. 받은 결과값을 객체에 옮겨서 저장하기 
+			
 			list = new ArrayList<RentCarDto>();
 			
 			while(rset.next()) {
@@ -325,7 +325,7 @@ public class RentCarDao {
 	public RentCarDto selectOne(Connection conn, String memberId) {
 		RentCarDto ca = null;
 		PreparedStatement pstmt = null;
-		ResultSet rset = null;// SELECT 후 결과값 받아올객체
+		ResultSet rset = null;
 		
 		
 		String sql = "SELECT * FROM rentcar WHERE car_no = ?";
@@ -334,7 +334,7 @@ public class RentCarDao {
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setString(1, memberId);
 			
-			//4.쿼리문을 전송, 실행한 결과를 resultset으로 받기
+			
 			
 			rset = pstmt.executeQuery();
 			
@@ -372,10 +372,10 @@ public class RentCarDao {
 
 	public List<RentCarDto> selectByName(Connection conn, String memberName) {
 		ArrayList<RentCarDto> list = null;
-		PreparedStatement pstmt = null;// 실행할 쿼리
-		ResultSet rset = null;// Select 한후 결과값 받아올 객체
+		PreparedStatement pstmt = null;// 
+		ResultSet rset = null;// Select 
 
-		String sql = "SELECT * FROM rentcar WHERE rentcar_model LIKE ?";// 자동으로 세미콜론을 붙여 실행되므로 붙히지않는다
+		String sql = "SELECT * FROM rentcar WHERE rentcar_model LIKE ?";// 占쌘듸옙占쏙옙占쏙옙 占쏙옙占쏙옙占쌥뤄옙占쏙옙 占쌕울옙 占쏙옙占쏙옙퓜퓐占� 占쏙옙占쏙옙占쏙옙占십는댐옙
 
 		try {
 
@@ -418,7 +418,7 @@ public class RentCarDao {
 		return list;
 	}
 	
-	// RentCar 반납 날짜, 시간 설정 
+	// RentCar 
 	public int UpdatereturnDate(Connection conn, String car_no, String udpatereturndate, String updatereturnsecond) {
 		
 		int result = 0;
@@ -435,7 +435,7 @@ public class RentCarDao {
 			pstmt.setString(2, updatereturnsecond);
 			pstmt.setString(3, car_no);
 			
-			result = pstmt.executeUpdate();// 처리한 행의 갯수 리턴 (int) , 에러 -1
+			result = pstmt.executeUpdate();
 
 				
 		}  catch (SQLException e) {
@@ -470,7 +470,7 @@ public class RentCarDao {
 //			pstmt.setString(8, m.getAddress());
 //			pstmt.setString(9, m.getHobby());
 			
-			result = pstmt.executeUpdate();// 처리한 행의 갯수 리턴 (int) , 에러 -1
+			result = pstmt.executeUpdate();
 
 				
 		}catch (SQLException e) {
@@ -503,7 +503,7 @@ public class RentCarDao {
 //			pstmt.setString(5, m.getUserId());
 
 			
-			result = pstmt.executeUpdate();// 처리한 행의 갯수 리턴 (int) , 에러 -1
+			result = pstmt.executeUpdate();
 
 				
 		}  catch (SQLException e) {
@@ -532,7 +532,7 @@ public class RentCarDao {
 			
 
 			
-			result = pstmt.executeUpdate();// 처리한 행의 갯수 리턴 (int) , 에러 -1
+			result = pstmt.executeUpdate();
 
 		}  catch (SQLException e) {
 			// TODO Auto-generated catch block
