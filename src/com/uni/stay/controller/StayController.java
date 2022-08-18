@@ -20,7 +20,7 @@ public class StayController {
 		if(s != null) {
 			menu.displayStayNameList(s);
 		} else {
-			menu.displayError("ÇØ´çµÇ´Â µ¥ÀÌÅÍ°¡ ¾ø½À´Ï´Ù.");
+			menu.displayError("í•´ë‹¹ë˜ëŠ” ë°ì´í„°ê°€ ì—†ìŠµë‹ˆë‹¤.");
 		}
 		
 	}
@@ -28,12 +28,11 @@ public class StayController {
 	public void selectByStayInfo(String stayArea, int stayCode, Date stayDay, String stayName) {
 		StayMenu menu = new StayMenu();
 		List<String> s = stayService.selectByStayInfo(stayName);
-//		List<BookingStay> bs2 = new ArrayList<BookingStay>();
 		
 		if(s != null) {
 			menu.displayStayInfoList(s);
 		} else {
-			menu.displayError("ÇØ´çµÇ´Â µ¥ÀÌÅÍ°¡ ¾ø½À´Ï´Ù.");
+			menu.displayError("í•´ë‹¹ë˜ëŠ” ë°ì´í„°ê°€ ì—†ìŠµë‹ˆë‹¤.");
 		}
 	}
 
@@ -45,7 +44,7 @@ public class StayController {
 		if(s != null) {
 			menu.displayBookingConfirm(s);
 		} else {
-			menu.displayError("ÇØ´çµÇ´Â µ¥ÀÌÅÍ°¡ ¾ø½À´Ï´Ù.");
+			menu.displayError("í•´ë‹¹ë˜ëŠ” ë°ì´í„°ê°€ ì—†ìŠµë‹ˆë‹¤.");
 		}
 	}
 

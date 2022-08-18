@@ -28,34 +28,34 @@ public class StayMenu {
 		String area = "";
 		
 		do {
-			System.out.println("\n*******Áö¿ª********");
-			System.out.println("1.Á¦ÁÖ½Ã");
-			System.out.println("2.¼­±ÍÆ÷½Ã");
-			System.out.println("0.ÀÌÀü È­¸é");
-			System.out.println("¹øÈ£¼±ÅÃ : ");
+			System.out.println("\n==========ì§€ì—­==========");
+			System.out.println("1.ì œì£¼ì‹œ");
+			System.out.println("2.ì„œê·€í¬ì‹œ");
+			System.out.println("0.ì´ì „ í™”ë©´");
+			System.out.println("ë²ˆí˜¸ì„ íƒ : ");
 			
 			areaChoice = sc.nextInt();
 			
 			
 			switch(areaChoice) {
 			case 1: 
-				area = "Á¦ÁÖ½Ã";
+				area = "ì œì£¼ì‹œ";
 				bookingStay.setStayArea(area);
 				stayMenu();
 				
 				break;
 			case 2:
-				area = "¼­±ÍÆ÷½Ã";
+				area = "ì„œê·€í¬ì‹œ";
 				bookingStay.setStayArea(area);
 				stayMenu();	
 				break;
 			case 0:
-				System.out.println("ÀÌÀü È­¸éÀ¸·Î µ¹¾Æ°©´Ï´Ù.");
+				System.out.println("ì´ì „ í™”ë©´ìœ¼ë¡œ ëŒì•„ê°‘ë‹ˆë‹¤.");
 				//TODO
 				break;
 				
 			default :
-				System.out.println("¹øÈ£¸¦ Àß¸øÀÔ·ÂÇÏ¿´½À´Ï´Ù.");
+				System.out.println("ë²ˆí˜¸ë¥¼ ì˜ëª»ì…ë ¥í•˜ì˜€ìŠµë‹ˆë‹¤.");
 			}
 			
 			
@@ -70,13 +70,13 @@ public class StayMenu {
 		int code = 0; 
 		
 		do {
-			System.out.println("\n*******¼÷¹Ú ±¸ºĞ********");
-			System.out.println("1.Ææ¼Ç");
-			System.out.println("2.È£ÅÚ");
-			System.out.println("3.¸®Á¶Æ®/ÄÜµµ");
-			System.out.println("4.±âÅ¸");
-			System.out.println("0.ÀÌÀü È­¸é");
-			System.out.println("¹øÈ£¼±ÅÃ : ");
+			System.out.println("\n==========ìˆ™ë°• êµ¬ë¶„==========");
+			System.out.println("1.íœì…˜");
+			System.out.println("2.í˜¸í…”");
+			System.out.println("3.ë¦¬ì¡°íŠ¸/ì½˜ë„");
+			System.out.println("4.ê¸°íƒ€");
+			System.out.println("0.ì´ì „ í™”ë©´");
+			System.out.println("ë²ˆí˜¸ì„ íƒ : ");
 			
 			stayChoice = sc.nextInt();
 			sc.nextLine();
@@ -103,12 +103,12 @@ public class StayMenu {
 				dayMenu();
 				break;
 			case 0:
-				System.out.println("ÀÌÀü È­¸éÀ¸·Î µ¹¾Æ°©´Ï´Ù.");
+				System.out.println("ì´ì „ í™”ë©´ìœ¼ë¡œ ëŒì•„ê°‘ë‹ˆë‹¤.");
 				areaMenu();
 				break;
 				
 			default :
-				System.out.println("¹øÈ£¸¦ Àß¸øÀÔ·ÂÇÏ¿´½À´Ï´Ù.");
+				System.out.println("ë²ˆí˜¸ë¥¼ ì˜ëª»ì…ë ¥í•˜ì˜€ìŠµë‹ˆë‹¤.");
 			}
 			
 			
@@ -120,10 +120,10 @@ public class StayMenu {
 		int choice;
 		
 		do {
-			System.out.println("\n*******ÀÔ½Ç ÀÏÀÚ********");
-			System.out.println("1.ÀÔ½Ç ÀÏÀÚ ÀÔ·Â");
-			System.out.println("0.ÀÌÀü È­¸é");
-			System.out.println("¹øÈ£¼±ÅÃ : ");
+			System.out.println("\n==========ì…ì‹¤ ì¼ì==========");
+			System.out.println("1.ì…ì‹¤ ì¼ì ì…ë ¥");
+			System.out.println("0.ì´ì „ í™”ë©´");
+			System.out.println("ë²ˆí˜¸ì„ íƒ : ");
 			
 			choice = sc.nextInt();
 			sc.nextLine();
@@ -134,12 +134,12 @@ public class StayMenu {
 				nameMenu();
 				break;
 			case 0:
-				System.out.println("ÀÌÀü È­¸éÀ¸·Î µ¹¾Æ°©´Ï´Ù.");
+				System.out.println("ì´ì „ í™”ë©´ìœ¼ë¡œ ëŒì•„ê°‘ë‹ˆë‹¤.");
 				stayMenu();
 				break;
 				
 			default :
-				System.out.println("¹øÈ£¸¦ Àß¸øÀÔ·ÂÇÏ¿´½À´Ï´Ù.");
+				System.out.println("ë²ˆí˜¸ë¥¼ ì˜ëª»ì…ë ¥í•˜ì˜€ìŠµë‹ˆë‹¤.");
 			}
 			
 			
@@ -149,7 +149,7 @@ public class StayMenu {
 
 	public void dayChoice() {
 		
-		System.out.println("ÀÔ½Ç ÀÏÀÚ¸¦ ÀÔ·ÂÇØ ÁÖ¼¼¿ä ( '-'±¸ºĞÀÚ·Î ³âµµ¿ùÀÏ ÀÔ·Â, ex)2022-01-01 ): ");
+		System.out.println("ì…ì‹¤ ì¼ìë¥¼ ì…ë ¥í•´ ì£¼ì„¸ìš” ( '-'êµ¬ë¶„ìë¡œ ë…„ë„ì›”ì¼ ì…ë ¥, ex)2022-01-01 ): ");
 		String bookingDate = sc.nextLine();
 		
 		date = bookingDate.split("-");
@@ -158,7 +158,7 @@ public class StayMenu {
 		day = date[2];
 		
 		int temp = Integer.parseInt(day);
-		temp++; //³¯Â¥¸¦ 1ÀÏ Ãß°¡
+		temp++; //ë‚ ì§œë¥¼ 1ì¼ ì¶”ê°€
 		
 		tomorrow = Integer.toString(temp);
 		
@@ -183,10 +183,10 @@ public class StayMenu {
 		int choice;
 		
 		do {
-			System.out.println("\n*******¼÷¼Ò ¸ñ·Ï ¹× ¼±ÅÃ********");
-			System.out.println("1.¼÷¼Ò ¸ñ·Ï ¹× ¼±ÅÃ");
-			System.out.println("0.ÀÌÀü È­¸é");
-			System.out.println("¹øÈ£¼±ÅÃ : ");
+			System.out.println("\n==========ìˆ™ì†Œ ëª©ë¡ ë° ì„ íƒ==========");
+			System.out.println("1.ìˆ™ì†Œ ëª©ë¡ ë° ì„ íƒ");
+			System.out.println("0.ì´ì „ í™”ë©´");
+			System.out.println("ë²ˆí˜¸ì„ íƒ : ");
 			choice = sc.nextInt();
 			sc.nextLine();
 			
@@ -194,19 +194,19 @@ public class StayMenu {
 			case 1: 
 				stayController.selectByNameList(bookingStay.getStayArea(), bookingStay.getStayCode());
 				
-				System.out.println("¼÷¼Ò¸¦ ¼±ÅÃÇØÁÖ¼¼¿ä (¼÷¼Ò¸í ÀÔ·Â): ");
+				System.out.println("ìˆ™ì†Œë¥¼ ì„ íƒí•´ì£¼ì„¸ìš” (ìˆ™ì†Œëª… ì…ë ¥): ");
 				String stayName = sc.nextLine();
 				bookingStay.setStayName(stayName);
 				
 				infoMenu();
 				break;
 			case 0:
-				System.out.println("ÀÌÀü È­¸éÀ¸·Î µ¹¾Æ°©´Ï´Ù.");
+				System.out.println("ì´ì „ í™”ë©´ìœ¼ë¡œ ëŒì•„ê°‘ë‹ˆë‹¤.");
 				dayMenu();
 				break;
 				
 			default :
-				System.out.println("¹øÈ£¸¦ Àß¸øÀÔ·ÂÇÏ¿´½À´Ï´Ù.");
+				System.out.println("ë²ˆí˜¸ë¥¼ ì˜ëª»ì…ë ¥í•˜ì˜€ìŠµë‹ˆë‹¤.");
 			}
 			
 			
@@ -218,9 +218,9 @@ public class StayMenu {
 	private void infoMenu() {
 		
 		do {
-			System.out.println("\n*******¼±ÅÃ ¼÷¼Ò Á¤º¸********");
-			System.out.println("1.¼±ÅÃ ¼÷¼Ò Á¤º¸ È®ÀÎ");
-			System.out.println("0.ÀÌÀü È­¸é");
+			System.out.println("\n==========ì„ íƒ ìˆ™ì†Œ ì •ë³´==========");
+			System.out.println("1.ì„ íƒ ìˆ™ì†Œ ì •ë³´ í™•ì¸");
+			System.out.println("0.ì´ì „ í™”ë©´");
 			
 			int choice = sc.nextInt();
 			sc.nextLine();
@@ -231,19 +231,19 @@ public class StayMenu {
 				stayController.selectByStayInfo(bookingStay.getStayArea(), bookingStay.getStayCode()
 						,bookingStay.getStayDay() , bookingStay.getStayName());
 				
-				System.out.println("¿¹¾àÇÏ½Ã°Ú½À´Ï±î?(y/n)");
+				System.out.println("ì˜ˆì•½í•˜ì‹œê² ìŠµë‹ˆê¹Œ?(y/n)");
 				String booking = sc.nextLine();
 				if(booking.equals("y")||booking.equals("Y")) {
 					bookingMenu();
 				}
 				break;
 			case 0:
-				System.out.println("ÀÌÀü È­¸éÀ¸·Î µ¹¾Æ°©´Ï´Ù.");
+				System.out.println("ì´ì „ í™”ë©´ìœ¼ë¡œ ëŒì•„ê°‘ë‹ˆë‹¤.");
 				nameMenu();
 				break;
 				
 			default :
-				System.out.println("¹øÈ£¸¦ Àß¸øÀÔ·ÂÇÏ¿´½À´Ï´Ù.");
+				System.out.println("ë²ˆí˜¸ë¥¼ ì˜ëª»ì…ë ¥í•˜ì˜€ìŠµë‹ˆë‹¤.");
 			}
 			
 			
@@ -256,7 +256,7 @@ public class StayMenu {
 		stayController.selectByBookingConfirmInfo(bookingStay.getStayArea(), bookingStay.getStayCode()
 				,bookingStay.getStayDay() , bookingStay.getStayName());
 		
-		System.out.println("¿£ÅÍ¸¦ ´­·¯ÁÖ½Ã¸é ¸Ş´º·Î µ¹¾Æ°©´Ï´Ù.");
+		System.out.println("ì—”í„°ë¥¼ ëˆŒëŸ¬ì£¼ì‹œë©´ ë©”ë‰´ë¡œ ëŒì•„ê°‘ë‹ˆë‹¤.");
 		String menu = sc.nextLine();
 		
 		
@@ -264,7 +264,7 @@ public class StayMenu {
 
 	public void displayStayNameList(List<Stay> s2) {
 		System.out.println();
-		System.out.println("´ÙÀ½Àº ¼÷¼Ò ¸ñ·Ï ÀÔ´Ï´Ù");
+		System.out.println("ë‹¤ìŒì€ ìˆ™ì†Œ ëª©ë¡ ì…ë‹ˆë‹¤");
 		System.out.println("----------------------------------");
 		System.out.println();
 		int i = 1;
@@ -275,20 +275,20 @@ public class StayMenu {
 	}
 
 	public void displayError(String message) {
-		System.out.println("¼­ºñ½º ¿äÃ» Ã³¸® ½ÇÆĞ : " + message);
+		System.out.println("ì„œë¹„ìŠ¤ ìš”ì²­ ì²˜ë¦¬ ì‹¤íŒ¨ : " + message);
 		
 	}
 
 	public void displayStayInfoList(List<String> s2) {
 		System.out.println();
-		System.out.println("---------¿¹¾à Á¤º¸---------");
+		System.out.println("==========ì˜ˆì•½ ì •ë³´==========");
 		System.out.println();
 		
-		System.out.println("¼÷¼Ò¸í : " + bookingStay.getStayName());
-		System.out.println("ÁÖ¼Ò : " + s2.get(1));
-		System.out.println("Check In : " + year + "³â " + month + "¿ù " + day + "ÀÏ 15½Ã00ºĞ ÀÌÈÄ");
-		System.out.println("Check Out : " + year + "³â " + month + "¿ù " + tomorrow + "ÀÏ 11½Ã00ºĞ ÀÌÀü");
-		System.out.println("±İ¾× : " + s2.get(2) + "¿ø");
+		System.out.println("ìˆ™ì†Œëª… : " + bookingStay.getStayName());
+		System.out.println("ì£¼ì†Œ : " + s2.get(1));
+		System.out.println("Check In : " + year + "ë…„ " + month + "ì›” " + day + "ì¼ 15ì‹œ00ë¶„ ì´í›„");
+		System.out.println("Check Out : " + year + "ë…„ " + month + "ì›” " + tomorrow + "ì¼ 11ì‹œ00ë¶„ ì´ì „");
+		System.out.println("ê¸ˆì•¡ : " + s2.get(2) + "ì›");
 	
 		System.out.println();
 		
@@ -297,16 +297,16 @@ public class StayMenu {
 
 	public void displayBookingConfirm(List<String> s2) {
 		System.out.println();
-		System.out.println("---------¿¹¾à ¿Ï·á---------");
+		System.out.println("==========ì˜ˆì•½ ì™„ë£Œ==========");
 		System.out.println();
 		
-		System.out.println("¼÷¼Ò¸í : " + bookingStay.getStayName());
-		System.out.println("ÁÖ¼Ò : " + s2.get(1));
-		System.out.println("Check In : " + year + "³â " + month + "¿ù " + day + "ÀÏ 15½Ã00ºĞ ÀÌÈÄ");
-		System.out.println("Check Out : " + year + "³â " + month + "¿ù " + tomorrow + "ÀÏ 11½Ã00ºĞ ÀÌÀü");
-		System.out.println("±İ¾× : " + s2.get(2) + "¿ø");
+		System.out.println("ìˆ™ì†Œëª… : " + bookingStay.getStayName());
+		System.out.println("ì£¼ì†Œ : " + s2.get(1));
+		System.out.println("Check In : " + year + "ë…„ " + month + "ì›” " + day + "ì¼ 15ì‹œ00ë¶„ ì´í›„");
+		System.out.println("Check Out : " + year + "ë…„ " + month + "ì›” " + tomorrow + "ì¼ 11ì‹œ00ë¶„ ì´ì „");
+		System.out.println("ê¸ˆì•¡ : " + s2.get(2) + "ì›");
 		System.out.println();
-		System.out.println("¼÷¼Ò°¡ ¿¹¾àµÇ¾ú½À´Ï´Ù.");
+		System.out.println("ìˆ™ì†Œê°€ ì˜ˆì•½ë˜ì—ˆìŠµë‹ˆë‹¤.");
 	}
 
 }
