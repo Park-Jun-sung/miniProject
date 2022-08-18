@@ -3,6 +3,17 @@ package com.uni.stay.model.dto;
 import java.io.Serializable;
 import java.sql.Date;
 
+/**
+ * <pre>
+ * Class : Stay
+ * Comment : DB stay table 에서 데이터를 가져오기위한 DTO
+ * History
+ * 2022/08/15 (김성환) 처음 작성함
+ * </pre>
+ * @author 김성환
+ * @version 1.0.0
+ * @see 참고할 class나 외부 url
+ * */
 public class Stay implements Serializable {
 
 	/**
