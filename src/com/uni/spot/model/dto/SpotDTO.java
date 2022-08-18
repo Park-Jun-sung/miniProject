@@ -11,11 +11,9 @@ public class SpotDto {
 	private String spotTime;
 	private int price;
 	
-	
 	public SpotDto() {
 		super();
 	}
-
 
 	public SpotDto(int spotNo, int spotCode, String spotName, String spotArea, String spotTime, int price) {
 		super();
