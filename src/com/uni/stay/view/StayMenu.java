@@ -290,9 +290,7 @@ public class StayMenu {
 	 */
 	public void displayError(String message) {
 		System.out.println("서비스 요청 처리 실패 : " + message);
-		
 	}
-
 	
 	/**
 	 * @param year, month, day, tomorrow 년, 월, 일, 다음일
