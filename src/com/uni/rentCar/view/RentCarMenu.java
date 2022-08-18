@@ -1,20 +1,31 @@
 package com.uni.rentCar.view;
-
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
-
 import com.uni.rentCar.controller.RentCarController;
 import com.uni.rentCar.fin_List.fin_List;
 import com.uni.rentCar.model.dto.RentCarDto;
 
+
+/**
+ * <pre>
+ * Class : RentCarMenu
+ * Comment : RentCarMenu에 대한 전체 Menu
+ * History
+ * 2022/08/18 정인섭 처음 작성함
+ * </pre>
+ * @author 작성자
+ * @version 1.0.0
+ * */
 public class RentCarMenu {
 
 	private static Scanner sc = new Scanner(System.in);
 	private RentCarController RentCarController = new RentCarController();
+	public static RentCarDto dto = new RentCarDto();
 	
-	public RentCarDto dto = new RentCarDto();
-	
+	/**
+		RentCarMenu 전체 메뉴
+	 */
 	public void RentCarMenu() {
 		
 		int choice;
@@ -72,68 +83,12 @@ public class RentCarMenu {
 			
 			
 		}
-	}
-
-	private RentCarDto updateMember() {
-		
-		RentCarDto rent = new RentCarDto();
-		
-//		m.setUserId(inputMemberId());
-//		System.out.println("암호 : ");
-//		m.setPassword(sc.next());
-//		System.out.println("이메일 : ");
-//		m.setEmail(sc.next());
-//		System.out.println("전화번호(-빼고입력) : ");
-//		m.setPhone(sc.next());
-//		System.out.println("주소 : ");
-//		sc.nextLine();//입력버퍼의 enter 키 제거
-//		m.setAddress(sc.nextLine());
-
-		return rent;
-	}
-
-	private RentCarDto inputMember() {
-		
-		RentCarDto rent = new RentCarDto();
-		
-//		System.out.println("새로운 회원정보를 입력하세요 >>");
-//		System.out.println("아이디 : ");
-//		m.setUserId(sc.next());
-//		System.out.println("암호 : ");
-//		m.setPassword(sc.next());
-//		System.out.println("이름 : ");
-//		m.setUserName(sc.next());
-//		System.out.println("나이 : ");
-//		m.setAge(sc.nextInt());
-//		System.out.println("성별(M/F) : ");
-//		m.setGender(sc.next().toUpperCase());
-//		System.out.println("이메일 : ");
-//		m.setEmail(sc.next());
-//		System.out.println("전화번호(-빼고입력) : ");
-//		m.setPhone(sc.next());
-//		System.out.println("주소 : ");
-//		sc.nextLine();//입력버퍼의 enter 키 제거
-//		m.setAddress(sc.nextLine());
-//		System.out.println("취미(, 로 공백없이 입력) : ");
-//		m.setHobby(sc.next());
-		
-		
-		return rent;
-	}
-
-	private String inputMemberName() {
-		System.out.println("조회할 회원이름 입력 : ");
-		return sc.next();
-	}
-
-	private String inputMemberId() {
-		System.out.println("아이디입력 : ");
-		return sc.next();
-	}
-
-	// 렌터카 조회된 리스트 리턴
+	}	
+	
+	/**
+	 * @param List<RentCarDto> list db에 조회된 리스트를 받고 출력
+	 */
 	public void displayRentCarList(List<RentCarDto> list) {
-		//System.out.println("\n조회된 전체 회원정보는 다음과 같습니다.");
 		System.out.println("\n조회된 전체 렌터카 정보는 다음과 같습니다.");
 		System.out.println("\n렌트번호\t차량번호\t차종\t  인수일자\t\t인수시간"
 				+ "\t\t반납일자\t\t반납시간\t    대여기간\t가격\t 분류\t 연료\t 정원\t 연식");
@@ -145,50 +100,75 @@ public class RentCarMenu {
 
 	}
 
-	// 에러메시지 출력용 메소드
+
+	/**
+	 * @param String message 에러메시지 출력용 메소드
+	 */
 	public void displayError(String message) {
 		System.out.println("서비스 요청 처리 실패 : " + message);
 
 	}
 	
-	//아이디로 조회된 회원 한명 정보를 출력할 메소드
-	public void displayMember(RentCarDto m) {
+	
+	/**
+	 * @param RentCarDto car 차 하나에 대한 정보를 출력할 메소드
+	 */
+	public void displayMember(RentCarDto car) {
 		System.out.println("\n조회된 전체 렌터카 정보는 다음과 같습니다.");
 		System.out.println("\n렌트번호\t차량번호\t차종\t  인수일자\t\t인수시간"
 				+ "\t\t반납일자\t\t반납시간\t    대여기간\t가격\t 분류\t 연료\t 정원\t 연식");
 		System.out.println("------------------------------------------------------------------------------------------------------------------------------------");
 		
-		System.out.println(m);
+		System.out.println(car);
 	}
-	//성공 메세지 출력
+	
+	
+	/**
+	 * @param String message 성공 메세지 출력
+	 */
 	public void displaySuccess(String message) {
 		System.out.println("서비스 요청 결과 : "+message)  ;
 	}
-		
 	
-	
-	// ======================= 마지막 리스트 출력하기 ====================
-	
+	/**
+	 * @param RentCarDto rentcar 최종 마지막 예약을 할 렌트카 리스트 데이터 출력
+	 */
 	public void displayfinRentCar(RentCarDto rentcar) {
 		
+		System.out.println("-------------------------------------------------------------------------------------------------------");
+		System.out.print("\t렌트번호");
+		System.out.print("\t\t\t차량번호");
+		System.out.println("\t\t\t차종");
+		System.out.println("\t" + rentcar.getRentcar_no() + "\t\t\t" + rentcar.getCar_no() + "\t\t\t" + rentcar.getRentcar_model());
 		
-		System.out.println("\n렌트번호\t차량번호\t차종\t  인수일자\t\t인수시간"
-				+ "\t\t반납일자\t\t반납시간\t    대여기간\t가격\t 분류\t 연료\t 정원\t 연식");
-		System.out.println("------------------------------------------------------------------------------------------------------------------------------------");
-		System.out.println(rentcar.getRentcar_no()
-						 + "    " + rentcar.getCar_no()
-						 + "    " + rentcar.getRentcar_model()
-						 + "    " + rentcar.getRentcar_date()
-						 + "    " + rentcar.getRentcar_datetime()
-						 + "    " + rentcar.getRentcar_enddate()
-						 + "    " + rentcar.getRentcar_endtime()
-						 + "    " + rentcar.getRentcar_renttime()
-						 + "    " + rentcar.getRentcar_price()
-						 + "    " + rentcar.getRentcar_section()
-						 + "    " + rentcar.getRentcar_fuel()
-						 + "    " + rentcar.getRentcar_limit()
-						 + "    " + rentcar.getRentcar_time()
-						 );
+		System.out.println("-------------------------------------------------------------------------------------------------------");
+		System.out.print("\t인수일자");
+		System.out.print("\t\t\t인수시간");
+		System.out.print("\t\t\t반납일자");
+		System.out.println("\t\t\t반납시간");
+		System.out.print("\t" + rentcar.getRentcar_date());
+		System.out.print("\t\t" + rentcar.getRentcar_datetime());
+		System.out.print("\t\t" + rentcar.getRentcar_enddate());
+		System.out.println("\t\t" + rentcar.getRentcar_endtime());
+		
+		System.out.println("-------------------------------------------------------------------------------------------------------");
+		System.out.print("\t대여기간");
+		System.out.print("\t가격");
+		System.out.print("\t분류");
+		System.out.print("\t연료");
+		System.out.print("\t정원");
+		System.out.println("\t연식");
+		
+		System.out.print("\t" + rentcar.getRentcar_renttime());
+		System.out.print("\t" + rentcar.getRentcar_price());
+		System.out.print("\t" + rentcar.getRentcar_section());
+		System.out.print("\t" + rentcar.getRentcar_fuel());
+		System.out.print("\t" + rentcar.getRentcar_limit());
+		System.out.println("\t" + rentcar.getRentcar_time());
+		
+		System.out.print("-------------------------------------------------------------------------------------------------------");
+		
+		
 		
 	}
 	

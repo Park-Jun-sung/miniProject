@@ -1,13 +1,26 @@
 package com.uni.utile;
 
+/**
+ * <pre>
+ * Class : StrDate
+ * Comment : 20200202 입력받은 데이터를 2020-02-02로 바꾸는 클래스
+ * History
+ * 2022/08/18 정인섭 처음 작성함
+ * </pre>
+ * @author 정인섭
+ * @version 1.0.0
+ * */
 public class StrDate {
-
+	/**
+	 * @param String temp 문자열 20200202를 받는 문자열
+	 * @return result_str 2020-02-02로 바꿔주게 된다.
+	 */
 	public String strDate(String temp) {
 		
 		String[] str = new String[temp.length()];
 		char[] ch = new char[temp.length()];
 		
-		// ��¥ char �迭 
+		
 		char[] ch2 = new char[10];
 		ch2[4] = '-';
 		ch2[7] = '-';
