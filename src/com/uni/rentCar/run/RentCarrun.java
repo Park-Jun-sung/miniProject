@@ -8,7 +8,7 @@ public class RentCarrun {
 		
 		RentCarMenu menu = new RentCarMenu();
 		
-		menu.RentCarMenu();
+		menu.rentCarMenu();
 	}
 
 }

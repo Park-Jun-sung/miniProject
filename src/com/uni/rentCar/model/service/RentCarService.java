@@ -22,6 +22,18 @@ public class RentCarService {
 
 	private RentCarDao rentcarDao = new RentCarDao();
 	
+	public ArrayList<RentCarDto> Reserved_RentCar(RentCarDto cardto) {
+		
+		Connection conn = getConnection();
+		
+		ArrayList<RentCarDto> car_list = rentcarDao.Reserved_RentCar(conn, cardto);
+		
+		return car_list;
+	}
+		
+	
+	
+	
 	/**
 	 * @param RentCarDto cardto 최종 cardto를 가져오는 매개변수
 	 * @return ca 예약테이블에서 변경이 되면 정수가 변하게 되고 결과값 int로 받아오게 된다.
