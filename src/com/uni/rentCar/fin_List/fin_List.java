@@ -12,8 +12,8 @@ public class fin_List {
 		 ArrayList<RentCarDto> book_date_list = new ArrayList<RentCarDto>(); 
 		
 		 
-		 // ³¯Â¥·Î Á¶°ÇÀ» ¹Þ°í ±× Á¶°Ç¿¡ ÀÇÇØ¼­ ³ª¿Â °ªÀ» ´Ù½Ã book_date_list¿¡ ³Ö´Â´Ù.
-		 // ³ªÁß¿¡ ´Ù½Ã ¿¹¾à Á¶°ÇÀ» È®ÀÎÇÏ±â À§ÇÑ È®ÀÎ¿ë
+		 // ë‚ ì§œë¡œ ì¡°ê±´ì„ ë°›ê³  ê·¸ ì¡°ê±´ì— ì˜í•´ì„œ ë‚˜ì˜¨ ê°’ì„ ë‹¤ì‹œ book_date_listì— ë„£ëŠ”ë‹¤.
+		 // ë‚˜ì¤‘ì— ë‹¤ì‹œ ì˜ˆì•½ ì¡°ê±´ì„ í™•ì¸í•˜ê¸° ìœ„í•œ í™•ì¸ìš©
 		 for (int i = 0; i < book.size(); ++i) {
 			 
 			 book_date_list.add(i, book.get(i));
@@ -28,8 +28,8 @@ public class fin_List {
 		
 		ArrayList<RentCarDto> book_time_list = new ArrayList<RentCarDto>();
 		
-		 // ½Ã°£À¸·Î Á¶°ÇÀ» ¹Þ°í ±× Á¶°Ç¿¡ ÀÇÇØ¼­ ³ª¿Â °ªÀ» ´Ù½Ã book_time_list¿¡ ³Ö´Â´Ù.
-		 // ³ªÁß¿¡ ´Ù½Ã ¿¹¾à Á¶°ÇÀ» È®ÀÎÇÏ±â À§ÇÑ È®ÀÎ¿ë
+		 // ì‹œê°„ìœ¼ë¡œ ì¡°ê±´ì„ ë°›ê³  ê·¸ ì¡°ê±´ì— ì˜í•´ì„œ ë‚˜ì˜¨ ê°’ì„ ë‹¤ì‹œ book_time_listì— ë„£ëŠ”ë‹¤.
+		 // ë‚˜ì¤‘ì— ë‹¤ì‹œ ì˜ˆì•½ ì¡°ê±´ì„ í™•ì¸í•˜ê¸° ìœ„í•œ í™•ì¸ìš©
 //		 for (int i = 0; i < book.size(); ++i) {
 //			 
 //			 book_time_list.add(i, book.get(i));
@@ -65,8 +65,8 @@ public class fin_List {
 		
 		ArrayList<RentCarDto> book_car_list = new ArrayList<RentCarDto>();
 		
-		 // Â÷Á¾À¸·Î Á¶°ÇÀ» ¹Þ°í ±× Á¶°Ç¿¡ ÀÇÇØ¼­ ³ª¿Â °ªÀ» ´Ù½Ã book_car_list¿¡ ³Ö´Â´Ù.
-		 // ³ªÁß¿¡ ´Ù½Ã ¿¹¾à Á¶°ÇÀ» È®ÀÎÇÏ±â À§ÇÑ È®ÀÎ¿ë
+		 // ì°¨ì¢…ìœ¼ë¡œ ì¡°ê±´ì„ ë°›ê³  ê·¸ ì¡°ê±´ì— ì˜í•´ì„œ ë‚˜ì˜¨ ê°’ì„ ë‹¤ì‹œ book_car_listì— ë„£ëŠ”ë‹¤.
+		 // ë‚˜ì¤‘ì— ë‹¤ì‹œ ì˜ˆì•½ ì¡°ê±´ì„ í™•ì¸í•˜ê¸° ìœ„í•œ í™•ì¸ìš©
 		 for (int i = 0; i < book.size(); ++i) {
 			 
 			 book_car_list.add(i, book.get(i));;
@@ -77,7 +77,7 @@ public class fin_List {
 	}
 
 	
-	// ¸¶Áö¸· ÇÑ°³ÀÇ ¿¹¾à ¸®½ºÆ®
+	// ë§ˆì§€ë§‰ í•œê°œì˜ ì˜ˆì•½ ë¦¬ìŠ¤íŠ¸
 	
 	public void book_fin() {
 		
