@@ -2,15 +2,26 @@ package com.uni.stay.view;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.Scanner;
 
+import com.uni.main.view.MainMenu;
 import com.uni.stay.controller.StayController;
 import com.uni.stay.model.dto.BookingStay;
 import com.uni.stay.model.dto.Stay;
 
+/**
+ * <pre>
+ * Class : 클래스의 이름
+ * Comment : 클래스에 대한 설명
+ * History
+ * 2020/09/08 (작성자) 처음 작성함
+ * </pre>
+ * @author 작성자
+ * @version 1.0.0
+ * @see 참고할 class나 외부 url
+ * */
 public class StayMenu {
 
 	private Scanner sc = new Scanner(System.in);
@@ -18,10 +29,11 @@ public class StayMenu {
 	private StayController stayController = new StayController();
 	private BookingStay bookingStay = new BookingStay();
 	private String[] date;
-	private String year;
-	private String month;
-	private String day;
-	private String tomorrow;
+	private static String year;
+	private static String month;
+	private static String day;
+	private static String tomorrow;
+	private MainMenu mainMenu = new MainMenu();
 	
 	public void areaMenu() {
 		int areaChoice;
@@ -51,7 +63,7 @@ public class StayMenu {
 				break;
 			case 0:
 				System.out.println("이전 화면으로 돌아갑니다.");
-				//TODO
+				mainMenu.mainMenu();
 				break;
 				
 			default :
@@ -258,7 +270,7 @@ public class StayMenu {
 		
 		System.out.println("엔터를 눌러주시면 메뉴로 돌아갑니다.");
 		String menu = sc.nextLine();
-		
+		mainMenu.mainMenu();
 		
 	}
 
@@ -279,12 +291,22 @@ public class StayMenu {
 		
 	}
 
+	
+	/**
+	 * <pre>
+	 * 
+	 * </pre>
+	 * @param 매개변수명 매개변수에 대한 설명
+	 * @param 매개변수명 매개변수에 대한 설명
+	 * @return return값에 대한 설명
+	 * @exception 예외 이유에 대한 설명
+	 */
 	public void displayStayInfoList(List<String> s2) {
 		System.out.println();
 		System.out.println("==========예약 정보==========");
 		System.out.println();
 		
-		System.out.println("숙소명 : " + bookingStay.getStayName());
+		System.out.println("숙소명 : " + s2.get(0));
 		System.out.println("주소 : " + s2.get(1));
 		System.out.println("Check In : " + year + "년 " + month + "월 " + day + "일 15시00분 이후");
 		System.out.println("Check Out : " + year + "년 " + month + "월 " + tomorrow + "일 11시00분 이전");
@@ -300,7 +322,7 @@ public class StayMenu {
 		System.out.println("==========예약 완료==========");
 		System.out.println();
 		
-		System.out.println("숙소명 : " + bookingStay.getStayName());
+		System.out.println("숙소명 : " + s2.get(0));
 		System.out.println("주소 : " + s2.get(1));
 		System.out.println("Check In : " + year + "년 " + month + "월 " + day + "일 15시00분 이후");
 		System.out.println("Check Out : " + year + "년 " + month + "월 " + tomorrow + "일 11시00분 이전");
