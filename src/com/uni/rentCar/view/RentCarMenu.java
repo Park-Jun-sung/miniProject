@@ -144,8 +144,20 @@ public class RentCarMenu {
 		SimpleDateFormat sim = new SimpleDateFormat("yyyy-MM-dd");
 		SimpleDateFormat sim2 = new SimpleDateFormat("HH:mm:ss");
 		
-		String enddate = sim.format(rentcar.getRentcar_enddate());
-        String endtime = sim2.format(rentcar.getRentcar_endtime());
+		String enddate = " ";
+		String endtime = " ";
+		
+		if (rentcar.getRentcar_enddate() != null) {
+			
+			 enddate = sim.format(rentcar.getRentcar_enddate());
+	         endtime = sim2.format(rentcar.getRentcar_endtime());
+	        
+		} else {
+			
+			 enddate = " ";
+			 endtime = " ";	
+		}
+		
 		
 		System.out.println("-------------------------------------------------------------------------------------------------------");
 		System.out.print("\t렌트번호");
